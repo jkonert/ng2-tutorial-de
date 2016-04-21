@@ -6,8 +6,12 @@ import {Component} from 'angular2/core';
 
 @Component({
     selector: 'helloworld-app',
-    template: '<h1>My First Angular 2 App</h1>'
+    template: '<h1>{{name}} First Angular 2 App</h1>'
 })
 export class AppComponent {
+    name: string;
 
+    constructor() {
+        this.name = "Johannes'";
+    }
 }
