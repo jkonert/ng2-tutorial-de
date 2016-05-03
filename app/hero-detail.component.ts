@@ -4,7 +4,7 @@
  * author András Bucsi, Jules Döring
  */
 import {Component, Input}  from 'angular2/core';
-import {Hero}       from './hero';
+import {Hero}              from './hero';
 
 
 @Component({
@@ -36,5 +36,5 @@ export class HeroDetailComponent {
      * Important for Binding, otherwise an error will be thrown
      */
     @Input()
-    hero: Hero;
+    private hero: Hero;
 }

@@ -4,8 +4,8 @@
  *
  * @author Johannes Konert, András Bucsi, Jules Döring
  */
-import {Component} from 'angular2/core';
-import {Hero} from './hero';
+import {Component}           from 'angular2/core';
+import {Hero}                from './hero';
 import {HeroDetailComponent} from './hero-detail.component';
 
 
@@ -27,9 +27,9 @@ import {HeroDetailComponent} from './hero-detail.component';
 
 
 export class AppComponent {
-    title       : string; // Title of the app
-    selectedHero: Hero;   // selected hero from list
-    heroes      : Hero[]; // Array for heroes
+    private title       : string; // Title of the app
+    private selectedHero: Hero;   // selected hero from list
+    private heroes      : Hero[]; // Array for heroes
 
     /**
      * One way of assigning values to the variables: the constructor
@@ -49,7 +49,7 @@ export class AppComponent {
      *
      * @param hero passed hero Object
      */
-    onSelect(hero: Hero) {
+    private onSelect(hero:Hero) {
         this.selectedHero = hero;
         console.log(this.selectedHero);}
 }
