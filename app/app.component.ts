@@ -36,7 +36,7 @@ export class AppComponent {
      */
     constructor(){
         this.title = 'Tour of Heroes';
-        this.heroes = [ new Hero(1,'Windstorm', 300, 'Olympia', 'Thunderbolt'), // Parameters defined in the Hero class (Hero.ts-file)
+        this.heroes = [ new Hero(1,'Windstorm', 300, 'Olympia', 'Thunderbolt'), // Parameters defined in the Hero class (hero.ts-file)
             new Hero(2,'Magneto', 35, 'Stalingrad', 'Neodym'),
             new Hero(3,'Magma', 3000, 'Earth Core', 'Lava')
         ];
