@@ -14,12 +14,12 @@ import {HeroDetailComponent} from './hero-detail.component';
     template: `<h1>{{title}}</h1>
 
                 <ul class="items">
-                    <li class="items"[class.selected]="heroes[0] === selectedHero" (click)="onSelect(heroes[0])"><span class="badge">{{heroes[0].id}}</span> {{heroes[0].name}}</li>
-                    <li class="items"[class.selected]="heroes[1] === selectedHero" (click)="onSelect(heroes[1])"><span class="badge">{{heroes[1].id}}</span> {{heroes[1].name}}</li>
-                    <li class="items"[class.selected]="heroes[2] === selectedHero" (click)="onSelect(heroes[2])"><span class="badge">{{heroes[2].id}}</span> {{heroes[2].name}}</li>
+                    <li class="items" [class.selected]="heroes[0] === selectedHero" (click)="onSelect(heroes[0])"><span class="badge">{{ heroes[0].id }}</span> {{ heroes[0].name }}</li>
+                    <li class="items" [class.selected]="heroes[1] === selectedHero" (click)="onSelect(heroes[1])"><span class="badge">{{ heroes[1].id }}</span> {{ heroes[1].name }}</li>
+                    <li class="items" [class.selected]="heroes[2] === selectedHero" (click)="onSelect(heroes[2])"><span class="badge">{{ heroes[2].id }}</span> {{ heroes[2].name }}</li>
                   </ul>
 
-                  <my-hero-detail *ngIf="selectedHero" [hero]="selectedHero"></my-hero-detail>
+                  <my-hero-detail [hero]="selectedHero"></my-hero-detail>
                 `,
     // Angular doesn't know about the my-hero-detail tag, so we have to tell Angular to use the new directive
     directives: [HeroDetailComponent]
@@ -37,9 +37,10 @@ export class AppComponent {
     constructor(){
         this.title = 'Tour of Heroes';
         this.heroes = [ new Hero(1,'Windstorm', 300, 'Olympia', 'Thunderbolt'), // Parameters defined in the Hero class (hero.ts-file)
-            new Hero(2,'Magneto', 35, 'Stalingrad', 'Neodym'),
-            new Hero(3,'Magma', 3000, 'Earth Core', 'Lava')
-        ];
+                        new Hero(2,'Magneto', 35, 'Stalingrad', 'Neodym'),
+                        new Hero(3,'Magma', 3000, 'Earth Core', 'Lava')
+                      ];
+        this.selectedHero = this.heroes[0];
     }
 
     /**
