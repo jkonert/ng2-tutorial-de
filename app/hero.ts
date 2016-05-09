@@ -3,7 +3,7 @@
  *
  * author András Bucsi, Jules Döring
  */
-export class Hero{
+export class Hero {
     private id              : number;
     private name            : string;
     private age             : number;
@@ -18,7 +18,7 @@ export class Hero{
      * @param placeOfResidence
      * @param favoriteWeapon
      */
-    constructor(id:number,name:string, age:number, placeOfResidence:string, favoriteWeapon:string){
+    constructor (id:number, name:string, age:number, placeOfResidence:string, favoriteWeapon:string) {
         this.id                 = id;
         this.name               = name;
         this.age                = age;
