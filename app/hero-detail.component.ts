@@ -5,6 +5,7 @@
  */
 import {Component, Input}  from 'angular2/core';
 import {Hero}              from './hero';
+import {NameComponent} from './name.component';
 
 
 @Component({
@@ -19,6 +20,10 @@ import {Hero}              from './hero';
                         <li class="item">
                             <span class="badge">NAME</span>
                             <input [(ngModel)]="hero.name" placeholder="name">
+                        </li>
+                        <li class="item">
+                            <span class="badge">NAME2</span>
+                            <name-child [name]="hero.name"></name-child>
                         </li>
                         <li class="item">
                             <span class="badge">AGE</span>
@@ -41,7 +46,8 @@ import {Hero}              from './hero';
                             <input [(ngModel)]="hero.favoriteWeapon" placeholder="favorite weapon">
                         </li>
                     </ul>
-                </div>`
+                </div>`,
+    directives: [NameComponent]
 })
 
 export class HeroDetailComponent {
