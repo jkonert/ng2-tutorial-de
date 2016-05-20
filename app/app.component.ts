@@ -14,12 +14,10 @@ import {HeroDetailComponent} from './hero-detail.component';
     template: `<h1>{{title}}</h1>
 
                 <ul class="items">
-                    <template ngFor #hero [ngForOf]="heroes">
-                        <li class="items" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
+                        <li *ngFor="let hero of heroes" class="items" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
                             <span class="badge">{{hero.id}}</span>
                             {{hero.name}}
                         </li>
-                    </template>
                 </ul>
 
                 <template [ngIf]="selectedHero">
