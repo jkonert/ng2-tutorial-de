@@ -4,9 +4,10 @@
  *
  * @author Johannes Konert, András Bucsi, Jules Döring
  */
-import {Component}           from 'angular2/core';
+import {Component, OnInit}   from 'angular2/core';
 import {Hero}                from './hero';
 import {HeroDetailComponent} from './hero-detail.component';
+import {HeroService}         from "./hero.service";
 
 
 @Component({
@@ -25,25 +26,41 @@ import {HeroDetailComponent} from './hero-detail.component';
                 </template>
                 `,
     // Angular doesn't know about the my-hero-detail tag, so we have to tell Angular to use the new directive
-    directives: [HeroDetailComponent]
+    directives: [HeroDetailComponent],
+    providers: [HeroService] // tell Angular to inject the HeroService
 })
 
 
-export class AppComponent {
+export class AppComponent implements OnInit {
     private title       : string; // Title of the app
     private selectedHero: Hero;   // selected hero from list
     private heroes      : Hero[]; // Array for heroes
 
     /**
      * One way of assigning values to the variables: the constructor
+     *
+     * The HeroService will be injected here and is available in this component and all of its children.
      */
-    constructor () {
+    constructor (private heroService: HeroService) {
         this.title = 'Tour of Heroes';
-        this.heroes = [
-            new Hero(1,'Windstorm', 300, 'Olympia', 'Thunderbolt'), // Parameters defined in the Hero class (hero.ts-file)
-            new Hero(2,'Magneto', 35, 'Stalingrad', 'Neodym'),
-            new Hero(3,'Magma', 3000, 'Earth Core', 'Lava')
-        ];
+    }
+
+    /**
+     * Get the heroes.
+     */
+    getHeroes() {
+        this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+    }
+
+    /**
+     * Get the heroes slowly.
+     */
+    getHeroesSlowly() {
+        this.heroService.getHeroesSlowly().then(heroes => this.heroes = heroes);
+    }
+
+    ngOnInit() {
+        this.getHeroes();
     }
 
     /**
