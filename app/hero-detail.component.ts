@@ -3,7 +3,7 @@
  *
  * author András Bucsi, Jules Döring
  */
-import {Component, Input}  from 'angular2/core';
+import {Component, Input}  from '@angular/core';
 import {Hero}              from './hero';
 import {NameComponent} from './name.component';
 

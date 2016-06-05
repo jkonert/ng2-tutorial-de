@@ -1,7 +1,7 @@
 /**
  * Created by Andreas Burger on 16.05.2016.
  */
-import { Component, Input } from 'angular2/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'name-child',
