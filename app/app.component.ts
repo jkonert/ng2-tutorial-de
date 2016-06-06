@@ -22,6 +22,9 @@ import {HeroService}         from "./hero.service";
                         </li>
                 </ul>
         <button (click)="addHero()">Add New Hero</button>
+            <div *ngIf="addingHero">
+                <add-hero (close)="close($event)"></add-hero>
+             </div>
                 <template [ngIf]="selectedHero">
                     <my-hero-detail [hero]="selectedHero"></my-hero-detail>
                 </template>
@@ -33,7 +36,7 @@ import {HeroService}         from "./hero.service";
 
 
 export class AppComponent implements OnInit {
-    private addingHero  : Hero;
+    private addingHero  : boolean;
     private title       : string; // Title of the app
     private selectedHero: Hero;   // selected hero from list
     private heroes      : Hero[]; // Array for heroes
@@ -46,16 +49,25 @@ export class AppComponent implements OnInit {
     constructor (private heroService: HeroService) {
         this.title = 'Tour of Heroes';
     }
-
+    private close(savedHero: Hero) {
+        this.addingHero = false;
+        if (savedHero) { this.getHeroes(); }
+    }
     /**
      * Get the heroes.
      */
-    private delete(hero:Hero,$event){
+    private delete(hero:Hero,event:any){
+        event.stopPropagation();
         this.heroService.delete(hero);
         this.getHeroes();
+        if (this.selectedHero === hero) { this.selectedHero = null;
+        }
     }
+
     private addHero() {
-    //this.heroService.save()
+        this.selectedHero = null;
+        this.addingHero=true;
+
     }
 
 
@@ -76,6 +88,7 @@ export class AppComponent implements OnInit {
      * @param hero passed hero Object
      */
     private onSelect(hero:Hero) {
+        this.addingHero=false;
         this.selectedHero = hero;
         console.log(this.selectedHero);
     }
