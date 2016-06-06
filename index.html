@@ -27,7 +27,8 @@
             map: {
                 'app' : 'app',
                 'rxjs': 'node_modules/rxjs',
-
+                'angular2-in-memory-web-api'       :'node_modules/angular2-in-memory-web-api',
+                '@angular/http'                    : 'node_modules/@angular/http',
                 '@angular/core'                    : 'node_modules/@angular/core',
                 '@angular/common'                  : 'node_modules/@angular/common',
                 '@angular/compiler'                : 'node_modules/@angular/compiler',
@@ -43,7 +44,9 @@
                 '@angular/compiler'                : {main: 'index.js'},
                 '@angular/router'                  : {main: 'index.js'},
                 '@angular/platform-browser'        : {main: 'index.js'},
-                '@angular/platform-browser-dynamic': {main: 'index.js'}
+                '@angular/platform-browser-dynamic': {main: 'index.js'},
+                '@angular/http'                    : {main: 'index.js'},
+                'angular2-in-memory-web-api'       : {main: 'index.js'}
             }
         });
         System.import('app/main')
