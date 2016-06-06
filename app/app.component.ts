@@ -18,9 +18,10 @@ import {HeroService}         from "./hero.service";
                         <li *ngFor="let hero of heroes" class="items" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
                             <span class="badge">{{hero.id}}</span>
                             {{hero.name}}
+                            <button style="float: right;" class="delete-button" (click)="delete(hero, $event)">Delete</button>
                         </li>
                 </ul>
-
+        <button (click)="addHero()">Add New Hero</button>
                 <template [ngIf]="selectedHero">
                     <my-hero-detail [hero]="selectedHero"></my-hero-detail>
                 </template>
@@ -32,6 +33,7 @@ import {HeroService}         from "./hero.service";
 
 
 export class AppComponent implements OnInit {
+    private addingHero  : Hero;
     private title       : string; // Title of the app
     private selectedHero: Hero;   // selected hero from list
     private heroes      : Hero[]; // Array for heroes
@@ -48,6 +50,15 @@ export class AppComponent implements OnInit {
     /**
      * Get the heroes.
      */
+    private delete(hero:Hero,$event){
+        this.heroService.delete(hero);
+        this.getHeroes();
+    }
+    private addHero() {
+    //this.heroService.save()
+    }
+
+
     getHeroes() {
         this.heroService.getHeroes().then(heroes => this.heroes = heroes);
     }
