@@ -6,10 +6,11 @@
 import {Component, Input}  from '@angular/core';
 import {Hero}              from './hero';
 import {NameComponent} from './name.component';
-
+import {HeroService}         from "./hero.service";
 
 @Component({
     selector : 'my-hero-detail',
+    providers: [HeroService],
     template: `  <div id="herodetails">
                     <h2>{{hero.name}} details:</h2>
                     <ul class="items">
@@ -46,6 +47,7 @@ import {NameComponent} from './name.component';
                             <input [(ngModel)]="hero.favoriteWeapon" placeholder="favorite weapon">
                         </li>
                     </ul>
+                    <button (click)="save()">Save</button>
                 </div>`,
     directives: [NameComponent]
 })
@@ -54,6 +56,15 @@ export class HeroDetailComponent {
     /**
      * Important for Binding, otherwise an error will be thrown
      */
+
     @Input()
     private hero: Hero;
+
+    constructor (private heroService: HeroService) {
+    }
+
+    private save(){
+        this.heroService.save(this.hero);
+
+    }
 }
