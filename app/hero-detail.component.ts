@@ -72,11 +72,12 @@ export class HeroDetailComponent implements OnInit {
     }
 
     private save(){
-        console.log("Save : " + this.hero.name);
+
         this.heroService.save(this.hero).then(hero => {
             this.hero = hero; // saved hero, w/ id if new
             this.close.emit(hero);
         })
+
     }
 
 
