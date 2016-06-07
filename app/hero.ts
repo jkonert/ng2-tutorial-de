@@ -20,7 +20,11 @@ export class Hero {
      * @param placeOfResidence
      * @param favoriteWeapon
      */
-    constructor (id:number = 0, name:string = "<default>", age:number = 20, placeOfResidence:string = "<default>", favoriteWeapon:string = "<default>") {
+    constructor (id:number = 0,
+                 name:string = "<default>",
+                 age:number = 20,
+                 placeOfResidence:string = "<default>",
+                 favoriteWeapon:string = "<default>") {
         this.id                 = id;
         this.name               = name;
         this.age                = age;

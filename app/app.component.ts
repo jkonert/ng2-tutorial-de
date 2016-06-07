@@ -21,10 +21,12 @@ import {HeroService}         from "./hero.service";
                             <button style="float: right;" class="delete-button" (click)="delete(hero, $event)">Delete</button>
                         </li>
                 </ul>
-        <button (click)="addHero()">Add New Hero</button>
-            <div *ngIf="addingHero">
-                <my-hero-detail [hero]="null" (close)="close($event)"></my-hero-detail>
-             </div>
+                
+                <button (click)="addHero()">Add New Hero</button>
+                <div *ngIf="addingHero">
+                    <my-hero-detail [hero]="null" (close)="close($event)"></my-hero-detail>
+                </div>
+                
                 <template [ngIf]="selectedHero"  *ngIf="addingHero == false">
                     <my-hero-detail [hero]="selectedHero"></my-hero-detail>
                 </template>

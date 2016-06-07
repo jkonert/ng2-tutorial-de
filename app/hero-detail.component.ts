@@ -80,7 +80,6 @@ export class HeroDetailComponent implements OnInit {
 
 
     ngOnInit() {
-        // console.log("Hero desde Init : " + this.hero.id);
         if (this.hero !== null) {
             let id = +this.hero.id;
             this.navigated = true;
