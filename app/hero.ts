@@ -4,8 +4,8 @@
  * author András Bucsi, Jules Döring
  */
 export class Hero {
-    public id              : number;
-    public name            : string;
+    public id               : number;
+    private name            : string;
     private age             : number;
     private placeOfResidence: string;
     private favoriteWeapon  : string;
