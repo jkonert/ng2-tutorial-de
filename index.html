@@ -10,23 +10,46 @@
 
     <!-- 1. Load libraries -->
     <!-- IE required polyfills, in this exact order -->
-    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
-    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
-    <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+    <script src="node_modules/core-js/client/shim.min.js"></script>
 
-    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+
+    <script src="node_modules/typescript/lib/typescript.js"></script>
+
 
     <!-- 2. Configure SystemJS -->
     <script>
         System.config({
+            transpiler: 'typescript',
+            typescriptOptions: {emitDecoratorMetadata: true},
+            map: {
+                'app'        : 'app', 
+                'rxjs'       : 'node_modules/rxjs', 
+                'typescript' : 'node_modules/typescript/lib/typescript',  
+
+                '@angular/core'                     : 'node_modules/@angular/core', 
+                '@angular/http'                     : 'node_modules/@angular/http', 
+                '@angular/common'                   : 'node_modules/@angular/common', 
+                '@angular/compiler'                 : 'node_modules/@angular/compiler', 
+                '@angular/platform-browser'         : 'node_modules/@angular/platform-browser', 
+                '@angular/platform-browser-dynamic' : 'node_modules/@angular/platform-browser-dynamic', 
+
+                'angular2-in-memory-web-api' : 'node_modules/angular2-in-memory-web-api'
+            },
             packages: {
-                app: {
-                    format: 'register',
-                    defaultExtension: 'js'
-                }
+                'app'                              : {main: 'main.ts', defaultExtension: 'ts'},
+                'rxjs'                             : {main: 'index.js'},
+
+                '@angular/core'                    : {main: 'index.js'},
+                '@angular/http'                    : {main: 'index.js'},
+                '@angular/common'                  : {main: 'index.js'},
+                '@angular/compiler'                : {main: 'index.js'},
+                '@angular/platform-browser'        : {main: 'index.js'},
+                '@angular/platform-browser-dynamic': {main: 'index.js'},
+
+                'angular2-in-memory-web-api'       : {main: 'index.js'}
             }
         });
         System.import('app/main')

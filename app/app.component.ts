@@ -4,7 +4,7 @@
  *
  * @author Johannes Konert, András Bucsi, Jules Döring
  */
-import {Component, OnInit}   from 'angular2/core';
+import {Component, OnInit}   from '@angular/core';
 import {Hero}                from './hero';
 import {HeroDetailComponent} from './hero-detail.component';
 import {HeroService}         from "./hero.service";
@@ -18,10 +18,16 @@ import {HeroService}         from "./hero.service";
                         <li *ngFor="let hero of heroes" class="items" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
                             <span class="badge">{{hero.id}}</span>
                             {{hero.name}}
+                            <button style="float: right;" class="delete-button" (click)="delete(hero, $event)">Delete</button>
                         </li>
                 </ul>
-
-                <template [ngIf]="selectedHero">
+                
+                <button (click)="addHero()">Add New Hero</button>
+                <div *ngIf="addingHero">
+                    <my-hero-detail [hero]="null" (close)="close($event)"></my-hero-detail>
+                </div>
+                
+                <template [ngIf]="selectedHero"  *ngIf="addingHero == false">
                     <my-hero-detail [hero]="selectedHero"></my-hero-detail>
                 </template>
                 `,
@@ -32,8 +38,9 @@ import {HeroService}         from "./hero.service";
 
 
 export class AppComponent implements OnInit {
+    private addingHero  : boolean;
     private title       : string; // Title of the app
-    private selectedHero: Hero;   // selected hero from list
+    public selectedHero: Hero;   // selected hero from list
     private heroes      : Hero[]; // Array for heroes
 
     /**
@@ -44,20 +51,34 @@ export class AppComponent implements OnInit {
     constructor (private heroService: HeroService) {
         this.title = 'Tour of Heroes';
     }
-
+    private close(savedHero: Hero) {
+        this.addingHero = false;
+        if (savedHero) { this.getHeroes(); }
+    }
     /**
      * Get the heroes.
      */
+    private delete(hero:Hero,event:any){
+        event.stopPropagation();
+        this.heroService.delete(hero);
+        this.getHeroes();
+        if (this.selectedHero === hero) { this.selectedHero = null;
+        }
+    }
+
+    private addHero() {
+        this.selectedHero = new Hero();
+        this.addingHero=true;
+        console.log("FCCC");
+
+    }
+
+
     getHeroes() {
         this.heroService.getHeroes().then(heroes => this.heroes = heroes);
     }
 
-    /**
-     * Get the heroes slowly.
-     */
-    getHeroesSlowly() {
-        this.heroService.getHeroesSlowly().then(heroes => this.heroes = heroes);
-    }
+
 
     ngOnInit() {
         this.getHeroes();
@@ -70,6 +91,7 @@ export class AppComponent implements OnInit {
      * @param hero passed hero Object
      */
     private onSelect(hero:Hero) {
+        this.addingHero=false;
         this.selectedHero = hero;
         console.log(this.selectedHero);
     }
