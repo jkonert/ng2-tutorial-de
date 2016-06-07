@@ -5,7 +5,7 @@
  */
 export class Hero {
     public id              : number;
-    private name            : string;
+    public name            : string;
     private age             : number;
     private placeOfResidence: string;
     private favoriteWeapon  : string;
@@ -24,5 +24,13 @@ export class Hero {
         this.age                = age;
         this.placeOfResidence   = placeOfResidence;
         this.favoriteWeapon     = favoriteWeapon
+    }
+
+    /**
+     * empty constructor for: 
+     * new Hero();
+     */
+    constructor () {
+        
     }
 }

@@ -3,15 +3,17 @@
  *
  * author András Bucsi, Jules Döring
  */
-import {Component, Input}  from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter}  from '@angular/core';
+import { RouteParams } from '@angular/router-deprecated';
+
 import {Hero}              from './hero';
 import {NameComponent} from './name.component';
 import {HeroService}         from "./hero.service";
 
+//noinspection JSAnnotator
 @Component({
     selector : 'my-hero-detail',
-    providers: [HeroService],
-    template: `  <div id="herodetails">
+    template: `  <div *ngIf="hero" id="herodetails">
                     <h2>{{hero.name}} details:</h2>
                     <ul class="items">
                         <li class="item">
@@ -48,23 +50,48 @@ import {HeroService}         from "./hero.service";
                         </li>
                     </ul>
                     <button (click)="save()">Save</button>
-                </div>`,
-    directives: [NameComponent]
+                </div>`
 })
 
-export class HeroDetailComponent {
+export class HeroDetailComponent implements OnInit {
+
     /**
      * Important for Binding, otherwise an error will be thrown
      */
 
     @Input()
-    private hero: Hero;
+    hero: Hero;
+    @Output()
+    close = new EventEmitter();
 
+    navigated = false; // true if navigated here
+
+
+    // constructor (private heroService: HeroService, private routeParams: RouteParams) {
     constructor (private heroService: HeroService) {
     }
 
     private save(){
-        this.heroService.save(this.hero);
-
+        console.log("Save : " + this.hero.name);
+        this.heroService.save(this.hero).then(hero => {
+            this.hero = hero; // saved hero, w/ id if new
+            this.close.emit(hero);
+        })
     }
+
+
+    ngOnInit() {
+        // console.log("Hero desde Init : " + this.hero.id);
+        if (this.hero !== null) {
+            let id = +this.hero.id;
+            this.navigated = true;
+            this.heroService.getHero(id)
+                .then(hero => this.hero = hero);
+        } else {
+            this.navigated = false;
+            this.hero = new Hero();
+        }
+    }
+
+
 }

@@ -23,7 +23,7 @@ import {HeroService}         from "./hero.service";
                 </ul>
         <button (click)="addHero()">Add New Hero</button>
             <div *ngIf="addingHero">
-                <my-hero-detail (close)="close($event)"></my-hero-detail>
+                <my-hero-detail [hero]="null" (close)="close($event)"></my-hero-detail>
              </div>
                 <template [ngIf]="selectedHero">
                     <my-hero-detail [hero]="selectedHero"></my-hero-detail>
@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
     }
 
     private addHero() {
-        this.selectedHero = null;
+        this.selectedHero = new Hero();
         this.addingHero=true;
         console.log("FCCC");
 
