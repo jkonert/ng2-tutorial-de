@@ -11,14 +11,16 @@ export class Hero {
     private favoriteWeapon  : string;
 
     /**
-     * Constructor with fixed parameters
+     * Constructor with fixed parameters.
+     * Default Parameters set for new Hero() Method.
+     *
      * @param id
      * @param name
      * @param age
      * @param placeOfResidence
      * @param favoriteWeapon
      */
-    constructor (id:number, name:string, age:number, placeOfResidence:string, favoriteWeapon:string) {
+    constructor (id:number = 0, name:string = "<default>", age:number = 20, placeOfResidence:string = "<default>", favoriteWeapon:string = "<default>") {
         this.id                 = id;
         this.name               = name;
         this.age                = age;
@@ -26,11 +28,5 @@ export class Hero {
         this.favoriteWeapon     = favoriteWeapon
     }
 
-    /**
-     * empty constructor for: 
-     * new Hero();
-     */
-    constructor () {
-        
-    }
+
 }

@@ -25,7 +25,7 @@ import {HeroService}         from "./hero.service";
             <div *ngIf="addingHero">
                 <my-hero-detail [hero]="null" (close)="close($event)"></my-hero-detail>
              </div>
-                <template [ngIf]="selectedHero">
+                <template [ngIf]="selectedHero"  *ngIf="addingHero == false">
                     <my-hero-detail [hero]="selectedHero"></my-hero-detail>
                 </template>
                 `,
