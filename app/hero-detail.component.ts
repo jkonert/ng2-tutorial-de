@@ -8,10 +8,11 @@ import {Hero}              from './hero';
 import {NameComponent} from './name.component';
 
 
+
 @Component({
     selector : 'my-hero-detail',
     template: `  <div id="herodetails">
-                    <h2>{{hero.name}} details:</h2>
+
                     <ul class="items">
                         <li class="item">
                             <span class="badge">ID</span>
@@ -23,7 +24,7 @@ import {NameComponent} from './name.component';
                         </li>
                         <li class="item">
                             <span class="badge">NAME2</span>
-                            <name-child [name]="hero.name"></name-child>
+                            <name-child [name]="hero.name" placeholder=""></name-child>
                         </li>
                         <li class="item">
                             <span class="badge">AGE</span>
@@ -45,9 +46,13 @@ import {NameComponent} from './name.component';
                             </span>
                             <input [(ngModel)]="hero.favoriteWeapon" placeholder="favorite weapon">
                         </li>
+
+
                     </ul>
-                </div>`,
-    directives: [NameComponent]
+
+                </div>
+
+                `
 })
 
 export class HeroDetailComponent {
