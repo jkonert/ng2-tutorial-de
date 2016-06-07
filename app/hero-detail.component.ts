@@ -4,10 +4,8 @@
  * author András Bucsi, Jules Döring
  */
 import {Component, Input, OnInit, Output, EventEmitter}  from '@angular/core';
-import { RouteParams } from '@angular/router-deprecated';
 
 import {Hero}              from './hero';
-import {NameComponent} from './name.component';
 import {HeroService}         from "./hero.service";
 
 //noinspection JSAnnotator
