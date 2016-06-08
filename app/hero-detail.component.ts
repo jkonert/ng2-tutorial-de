@@ -3,16 +3,17 @@
  *
  * author András Bucsi, Jules Döring
  */
-import {Component, Input}  from 'angular2/core';
+import {Component, Input, OnInit, Output, EventEmitter}  from '@angular/core';
+
 import {Hero}              from './hero';
-import {NameComponent} from './name.component';
+import {HeroService}         from "./hero.service";
 
 
-
+//noinspection JSAnnotator
 @Component({
     selector : 'my-hero-detail',
-    template: `  <div id="herodetails">
-
+    template: `  <div *ngIf="hero" id="herodetails">
+                    <h2>{{hero.name}} details:</h2>
                     <ul class="items">
                         <li class="item">
                             <span class="badge">ID</span>
@@ -24,7 +25,7 @@ import {NameComponent} from './name.component';
                         </li>
                         <li class="item">
                             <span class="badge">NAME2</span>
-                            <name-child [name]="hero.name" placeholder=""></name-child>
+                            <name-child [name]="hero.name"></name-child>
                         </li>
                         <li class="item">
                             <span class="badge">AGE</span>
@@ -46,19 +47,50 @@ import {NameComponent} from './name.component';
                             </span>
                             <input [(ngModel)]="hero.favoriteWeapon" placeholder="favorite weapon">
                         </li>
-
-
                     </ul>
-
-                </div>
-
-                `
+                    <button (click)="save()">Save</button>
+                </div>`
 })
 
-export class HeroDetailComponent {
+export class HeroDetailComponent implements OnInit {
+
     /**
      * Important for Binding, otherwise an error will be thrown
      */
+
     @Input()
-    private hero: Hero;
+    hero: Hero;
+    @Output()
+    close = new EventEmitter();
+
+    navigated = false; // true if navigated here
+
+
+    // constructor (private heroService: HeroService, private routeParams: RouteParams) {
+    constructor (private heroService: HeroService) {
+    }
+
+    private save(){
+
+        this.heroService.save(this.hero).then(hero => {
+            this.hero = hero; // saved hero, w/ id if new
+            this.close.emit(hero);
+        })
+
+    }
+
+
+    ngOnInit() {
+        if (this.hero !== null) {
+            let id = +this.hero.id;
+            this.navigated = true;
+            this.heroService.getHero(id)
+                .then(hero => this.hero = hero);
+        } else {
+            this.navigated = false;
+            this.hero = new Hero();
+        }
+    }
+
+
 }

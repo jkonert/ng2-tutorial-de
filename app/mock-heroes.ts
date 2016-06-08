@@ -1,5 +1,4 @@
-import { Hero }         from './hero';
-import {HeroBirthday2}  from './hero-birthday2.component';
+import { Hero } from './hero';
 
 export var HEROES: Hero[] = [
     new Hero(1,'Windstorm', 300, 'Olympia', 'Thunderbolt'), // Parameters defined in the Hero class (hero.ts-file)
