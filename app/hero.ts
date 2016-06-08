@@ -29,7 +29,7 @@ export class Hero {
         this.name               = name;
         this.age                = age;
         this.placeOfResidence   = placeOfResidence;
-        this.favoriteWeapon     = favoriteWeapon
+        this.favoriteWeapon     = favoriteWeapon;
     }
 
 
