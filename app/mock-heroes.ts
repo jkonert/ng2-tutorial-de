@@ -1,5 +1,4 @@
 import { Hero }         from './hero';
-import {HeroBirthday}   from './hero-birthday1.component';
 import {HeroBirthday2}  from './hero-birthday2.component';
 
 export var HEROES: Hero[] = [
