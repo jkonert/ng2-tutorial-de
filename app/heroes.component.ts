@@ -77,10 +77,10 @@ export class HeroesComponent implements OnInit {
     }
 
     private getRandomHeroesID(){
-        function getRandomArbitrary(min, max) {
-            return Math.random() * (max - min) + min;
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min +1)) + min;
         }
-        return this.heroes[getRandomArbitrary(0,this.heroes.length-1)].id;
+        return this.heroes[getRandomInt(0,this.heroes.length-1)].id;
     }
 
     private navigateToRandomHero(){
