@@ -4,21 +4,16 @@
  * author András Bucsi, Jules Döring
  */
 import {Component, Input, OnInit, Output, EventEmitter}  from '@angular/core';
-import {RouteSegment, Router}   from '@angular/router';
+import {Router }                from '@angular/router'
 
 import {Hero}                   from './hero';
 import {HeroService}            from "./hero.service";
 import {PowerBoostCalculator}   from "./power-boost-calculator.component";
-import {HeroBirthday2}          from "./hero-birthday2.component";
-
 
 //noinspection JSAnnotator
 @Component({
-    selector: 'my-hero-detail',
-    template: ` <div *ngIf="hero" id="herodetails">
-                 
-                    <h2>{{hero.name | uppercase}} is my hero</h2>
-                    <hero-birthday2 [hero]="hero"></hero-birthday2>
+    selector : 'my-new-hero-detail',
+    template: ` <div *ngIf="hero" id="newherodetails">
                     <h2>{{hero.name}} details:</h2>
                     <ul class="items">
                         <li class="item">
@@ -61,47 +56,44 @@ import {HeroBirthday2}          from "./hero-birthday2.component";
                     <button (click)="save()">Save</button>
                 </div>`,
     // Angular doesn't know about the my-hero-detail tag, so we have to tell Angular to use the new directive
-    directives: [HeroBirthday2, PowerBoostCalculator]
-
-
+    directives: [PowerBoostCalculator]
 })
 
-export class HeroDetailComponent implements OnInit {
+export class NewHeroDetailComponent implements OnInit {
+
+    private hero: Hero;
 
     /**
-     * Important for Binding, otherwise an error will be thrown
+     * creates the services
+     * @param router
+     * @param heroService
      */
+    constructor(
+        private router:Router,
+        private heroService:HeroService){}
 
-    @Input()
-    hero:Hero;
-
-    constructor(private router:Router,
-                private routeParams:RouteSegment,
-                private heroService:HeroService) {
-    }
-
-    private save() {
+    /**
+     * called the hero service and save these data in the db
+     */
+    private save(){
 
         this.heroService.save(this.hero).then(hero => {
             this.hero = hero;
         });
-
+        
         this.gotoHeroes()
     }
 
+    /**
+     * creates a new hero
+     */
     ngOnInit() {
-        if(+this.routeParams.getParam('id') != null){
-            let id = +this.routeParams.getParam('id');
-            this.heroService.getHero(id)
-                .then(hero => this.hero = hero);   
-        }
-        /*console.log(this.hero);
-        if (this.hero === undefined) {
-            window.alert("This id was not found!");
-            this.gotoHeroes()
-        }*/
+        this.hero = new Hero();
     }
 
+    /**
+     * navigate us to the hero list
+     */
     gotoHeroes() {
         // Like <a [routerLink]="['Heroes']">Heroes</a>
         this.router.navigate(['/heroes']);
@@ -110,5 +102,4 @@ export class HeroDetailComponent implements OnInit {
     goBack(){
         window.history.back();
     }
-
 }
