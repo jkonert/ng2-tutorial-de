@@ -61,6 +61,7 @@ import {PowerBoostCalculator}   from "./power-boost-calculator.component";
 
 export class NewHeroDetailComponent implements OnInit {
 
+
     private hero: Hero;
 
     /**

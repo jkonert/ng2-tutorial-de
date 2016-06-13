@@ -24,6 +24,8 @@ import {HeroService}            from "./hero.service";
                 </ul>
                 
                 <button (click)="addHero()">Add New Hero</button>
+                <button (click)="navigateToYoungestHero()">navigate to youngest hero</button>
+                <button (click)="navigateToRandomHero()">navigate to hero of the moment</button>
                 `
     })
 
@@ -56,6 +58,33 @@ export class HeroesComponent implements OnInit {
         this.getHeroes();
         if (this.selectedHero === hero) { this.selectedHero = null;
         }
+    }
+
+    private getYoungestHeroesID(){
+        function compare(a,b) {
+            if (a.age < b.age)
+                return -1;
+            if (a.age > b.age)
+                return 1;
+            return 0;
+        }
+        var sortedHeroes = this.heroes.sort(compare);
+        return sortedHeroes[0].id;
+    }
+
+    private navigateToYoungestHero(){
+        this.router.navigate(['/hero', this.getYoungestHeroesID()])
+    }
+
+    private getRandomHeroesID(){
+        function getRandomArbitrary(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+        return this.heroes[getRandomArbitrary(0,this.heroes.length-1)].id;
+    }
+
+    private navigateToRandomHero(){
+        this.router.navigate(['/hero', this.getRandomHeroesID()])
     }
 
     /**
