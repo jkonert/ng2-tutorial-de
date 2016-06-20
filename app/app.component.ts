@@ -20,7 +20,6 @@ import {PowerBoostCalculator}   from './power-boost-calculator.component';
     styleUrls:  ['/hero-detail.component.css', '/app.component.css'],
 
     template: `<h1>{{title}}</h1>
-
                 <ul class="items">
                         <li *ngFor="let hero of heroes" class="items" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
                             <span class="badge">{{hero.id}}</span>
@@ -33,13 +32,14 @@ import {PowerBoostCalculator}   from './power-boost-calculator.component';
                 <div *ngIf="addingHero">
                     <my-hero-detail [hero]="null" (close)="close($event)"></my-hero-detail>
                 </div>
-                
+               
                 <template [ngIf]="selectedHero"  *ngIf="addingHero == false">
                 <div *ngIf="selectedHero">
                   <h2>
                     {{selectedHero.name | uppercase}} is my hero
                   </h2>
-                </div>
+                </div> 
+                 </template>
                 <template [ngIf]="selectedHero">
                        <hero-birthday2 [hero]="selectedHero"></hero-birthday2>
                 </template>
@@ -48,10 +48,8 @@ import {PowerBoostCalculator}   from './power-boost-calculator.component';
                 </template>
                 <template [ngIf]="selectedHero">
                        <power-boost-calculator [hero]="selectedHero"></power-boost-calculator>
-                </template>
-
-
-                `,
+               
+                </template>`,
     // Angular doesn't know about the my-hero-detail tag, so we have to tell Angular to use the new directive
     directives: [HeroDetailComponent, HeroBirthday2, PowerBoostCalculator],
     providers: [HeroService] // tell Angular to inject the HeroService
