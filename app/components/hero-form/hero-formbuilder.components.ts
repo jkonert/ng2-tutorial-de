@@ -7,10 +7,11 @@ import {Component, Input, OnInit, Output, EventEmitter}  from '@angular/core';
 import {ControlGroup,FormBuilder,Validators} from "@angular/common";
 import {Hero}              from '../../hero';
 import {HeroService}         from "../../services/hero/hero.service.ts";
+import HeroNameValidator from "../../validators/heroNameValidator";
 // import {Router} from "@angular/router";
 @Component({
     selector : 'my-hero-form-builder',
-    providers : [HeroService,FormBuilder],
+    providers : [HeroService],
     styleUrls:['/hero-form.component.css'],
     template: `
  <h2 >Hero {{hero.id ==0 ?  "creation":"edit" }} form with Formbuilder: </h2>
@@ -27,7 +28,7 @@ import {HeroService}         from "../../services/hero/hero.service.ts";
             type="text" 
             id="heroId-fb" 
             [ngFormControl]="heroFormBuilder.controls['id']" 
-             value="{{heroFormBuilder.controls['id'].value}}">
+            >
 
     </li> 
     <li class="item">
@@ -38,10 +39,11 @@ import {HeroService}         from "../../services/hero/hero.service.ts";
             type="text" 
             id="heroName-fb"                
             [ngFormControl]="heroFormBuilder.controls['name']"
-            value="{{heroFormBuilder.controls['name'].value}}" 
-            #name="ngForm">
+             
+            #name="ngForm" 
+            #spy>
     </li> 
-                <span *ngIf="!name.valid">Invalid! must be longer than 3 letters</span>
+                <span *ngIf="!name.valid" class="error-span">Invalid! must be > 3  && <=8 characters and may not start with a number</span>
 
     <li class="item">
         <span class="badge"><label for="heroAge-fb">Age of the hero:</label></span>
@@ -50,7 +52,7 @@ import {HeroService}         from "../../services/hero/hero.service.ts";
              name="age"
             type="number" id="heroAge-fb" 
             [ngFormControl]="heroFormBuilder.controls['age']"
-            value="{{heroFormBuilder.controls['age'].value}}">
+            placeholder="{{heroFormBuilder.controls['age'].value}}">
     </li> 
     <li class="item">
         <span class="badge"><label for="heroPlaceOfResidence-fb">Place of residence</label></span>
@@ -59,8 +61,11 @@ import {HeroService}         from "../../services/hero/hero.service.ts";
             type="text" 
             id="heroPlaceOfResidence-fb" 
             [ngFormControl]="heroFormBuilder.controls['placeOfResidence']"
-            value="{{heroFormBuilder.controls['placeOfResidence'].value}}">
+            
+            #placeOfResidence="ngForm">
+            
     </li> 
+                <span  *ngIf="!placeOfResidence.valid" class="error-span">Invalid! must be exactly 5 alphanumeric character long</span>
     <li class="item">
         <span class="badge"><label for="heroFavoriteWeapon-fb">Favorite Weapon:</label></span>
         <input 
@@ -68,7 +73,8 @@ import {HeroService}         from "../../services/hero/hero.service.ts";
             type="text" 
             id="heroFavoriteWeapon-fb"
             [ngFormControl]="heroFormBuilder.controls['favoriteWeapon']"
-            value="{{heroFormBuilder.controls['favoriteWeapon'].value}}" #spy>
+            placeholder="{{heroFormBuilder.controls['favoriteWeapon'].value}}"
+            #favoriteWeapon="ngForm">
     </li> 
   
   </ul>
@@ -79,6 +85,12 @@ import {HeroService}         from "../../services/hero/hero.service.ts";
 
 </form>`,
     styles:[`
+ul span.error-span{
+    color : red;
+    font-size: 10pt;
+    padding-top: 3px;
+    padding-left: 5px;
+}
     .item {
     display: flex;        
     }
@@ -105,7 +117,6 @@ export class HeroFormBuilderComponent implements OnInit {
     /**
      * Important for Binding, otherwise an error will be thrown
      */
-     heroFormBuilder : ControlGroup;
 
     @Input() hero: Hero;
     @Output()
@@ -116,6 +127,7 @@ export class HeroFormBuilderComponent implements OnInit {
     // constructor (private heroService: HeroService, private routeParams: RouteParams) {
     constructor (private heroService: HeroService, private formBuilder: FormBuilder) {
     }
+    heroFormBuilder : ControlGroup;
 
     private save(){
         if (this.heroFormBuilder.valid) {
@@ -145,9 +157,9 @@ export class HeroFormBuilderComponent implements OnInit {
         }
         this.heroFormBuilder = this.formBuilder.group({
             id : [this.hero.id],
-            name: [Hero.getName(this.hero),Validators.minLength(3) ],
+            name: [Hero.getName(this.hero), Validators.compose([Validators.maxLength(8),Validators.minLength(3), Validators.required,HeroNameValidator.startsWithNumber]) ],
             age : [Hero.getAge(this.hero),Validators.required],
-            placeOfResidence : [Hero.getPlaceOfResidence(this.hero),Validators.required],
+            placeOfResidence : [Hero.getPlaceOfResidence(this.hero),Validators.pattern('[A-Za-z0-9]{5}')],
             favoriteWeapon:[Hero.getFavoriteWeapon(this.hero),Validators.required]
 
 
@@ -155,6 +167,5 @@ export class HeroFormBuilderComponent implements OnInit {
         // console.log("++++++++++++++++++",id,this.hero)
 
     }
-
 
 }

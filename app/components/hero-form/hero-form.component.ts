@@ -12,10 +12,9 @@ import {HeroService}         from "../../services/hero/hero.service.ts";
     selector : 'my-hero-form',
     providers : [HeroService],
     template:
-`<h2>Hero {{hero.id == 0 ?  "creation":"edit" }} form:</h2>
- 
-  <form >
-  
+
+`<h2>Hero {{hero.id == 0 ?  "creation":"edit" }} form:</h2> 
+  <form >  
   <ul class="items">
    <li *ngIf="hero.id" class="item" >
         <span class="badge"><label for="heroId">ID:</label></span>
@@ -24,7 +23,7 @@ import {HeroService}         from "../../services/hero/hero.service.ts";
              id="heroId" 
              readonly
              [(ngModel)]="hero.id" 
-             value="{{hero.id}}" > 
+             > 
     </li> 
     <li class="item">
         <span class="badge"><label for="heroName">Name:</label></span>
@@ -33,23 +32,38 @@ import {HeroService}         from "../../services/hero/hero.service.ts";
             id="heroName" 
             required
             [(ngModel)]="hero.name"  
-            value="{{hero.name}}" >
+            minlength="3" 
+            #name>
     </li> 
     <li class="item">
         <span class="badge"><label for="heroAge">Age:</label></span>
-        <input required type="number" id="heroAge" [(ngModel)]="hero.age"  value="{{hero.age}}">
+        <input 
+        required 
+        type="number" 
+        id="heroAge" 
+        [(ngModel)]="hero.age"  
+        #age>
     </li> 
     <li class="item">
         <span class="badge"><label for="heroPlaceOfResidence">Residence:</label></span>
-        <input required type="text" id="heroPlaceOfResidence" [(ngModel)]="hero.placeOfResidence"  value="{{hero.placeOfResidence}}">
+        <input 
+        required 
+        type="text" id="heroPlaceOfResidence" 
+        [(ngModel)]="hero.placeOfResidence"  
+        #placeOfResidence>
     </li> 
     <li class="item">
         <span class="badge"><label for="heroFavoriteWeapon">Weapon:</label></span>
-        <input required type="text" id="heroFavoriteWeapon" [(ngModel)]="hero.favoriteWeapon"  value="{{hero.favoriteWeapon}}" #spy>
+        <input 
+        required 
+        type="text" id="heroFavoriteWeapon" 
+        [(ngModel)]="hero.favoriteWeapon"  
+        #favoriteWeapon
+        #spy>
     </li> 
   {{spy.className}}
   </ul>
-<button (click)="save(hero)">save</button>
+<button  (click)="save(hero)">save</button>
 
 </form>`,
     styles:[`
