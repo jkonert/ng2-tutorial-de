@@ -1,5 +1,5 @@
 /**
- * HeroDetailComponent for the detailed view
+ * HeroForm editablity
  *
  * author Yeong-Cheol Jang
  */
@@ -33,7 +33,7 @@ import {HeroService}         from "../../services/hero/hero.service.ts";
             required
             [(ngModel)]="hero.name"  
             minlength="3" 
-            #name>
+            >
     </li> 
     <li class="item">
         <span class="badge"><label for="heroAge">Age:</label></span>

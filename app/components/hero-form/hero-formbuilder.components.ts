@@ -1,5 +1,5 @@
 /**
- * HeroDetailComponent for the detailed view
+ * HeroFormBuilder for editability
  *
  * author Yeong-Cheol Jang
  */
@@ -20,7 +20,7 @@ import HeroNameValidator from "../../validators/heroNameValidator";
   
   
   <ul class="items">
-   <li class="item">
+   <li class="item" *ngIf="hero.id">
         <span class="badge"><label for="heroId-fb">ID:</label></span>
         <input 
             name="id"
@@ -133,10 +133,8 @@ export class HeroFormBuilderComponent implements OnInit {
         if (this.heroFormBuilder.valid) {
         this.heroService.save(this.heroFormBuilder.value).then(hero => {
             this.hero = new Hero(hero); // saved hero, w/ id if new
-            this.initHeroFormBuilder(this.hero)
-            //
+            this.heroFormBuilder=this.initHeroFormBuilder(this.hero)
             this.close.emit(this.hero);
-            // this.close.emit(this.heroFormBuilder)
         })
 
 
@@ -145,7 +143,7 @@ export class HeroFormBuilderComponent implements OnInit {
     }
 
 initHeroFormBuilder(hero : Hero) :ControlGroup {
-    this.heroFormBuilder = this.formBuilder.group({
+    return  this.formBuilder.group({
         id : [hero.id],
         name: [
             Hero.getName(hero),
@@ -161,7 +159,7 @@ initHeroFormBuilder(hero : Hero) :ControlGroup {
 
 
     })
-    return this.heroFormBuilder
+
 }
     ngOnInit() :any {
 
@@ -178,7 +176,7 @@ initHeroFormBuilder(hero : Hero) :ControlGroup {
         //     this.navigated = false;
             this.hero = new Hero();
         }
-        this.initHeroFormBuilder(this.hero);
+        this.heroFormBuilder= this.initHeroFormBuilder(this.hero);
 
         // console.log("++++++++++++++++++",id,this.hero)
 
