@@ -16,7 +16,7 @@ import HeroNameValidator from "../../validators/heroNameValidator";
     template: `
  <h2 >Hero {{hero.id ==0 ?  "creation":"edit" }} form with Formbuilder: </h2>
  
-  <form (ngSubmit)="save()" [ngFormModel]="heroFormBuilder" >
+  <form *ngIf="hero"(ngSubmit)="save()" [ngFormModel]="heroFormBuilder" >
   
   
   <ul class="items">
@@ -133,13 +133,36 @@ export class HeroFormBuilderComponent implements OnInit {
         if (this.heroFormBuilder.valid) {
         this.heroService.save(this.heroFormBuilder.value).then(hero => {
             this.hero = new Hero(hero); // saved hero, w/ id if new
+            this.initHeroFormBuilder(this.hero)
+            //
             this.close.emit(this.hero);
+            // this.close.emit(this.heroFormBuilder)
         })
+
+
         }
 
     }
 
+initHeroFormBuilder(hero : Hero) :ControlGroup {
+    this.heroFormBuilder = this.formBuilder.group({
+        id : [hero.id],
+        name: [
+            Hero.getName(hero),
+            Validators.compose([
+                Validators.maxLength(8),
+                Validators.minLength(3),
+                Validators.required,
+                HeroNameValidator.startsWithNumber
+            ]) ],
+        age : [Hero.getAge(hero),Validators.required],
+        placeOfResidence : [Hero.getPlaceOfResidence(hero),Validators.pattern('[A-Za-z0-9]{5}')],
+        favoriteWeapon:[Hero.getFavoriteWeapon(hero),Validators.required]
 
+
+    })
+    return this.heroFormBuilder
+}
     ngOnInit() :any {
 
         // this.heroService.getHero(this.hero? this.hero.id : 0).then(her=> this.hero = her);
@@ -155,15 +178,8 @@ export class HeroFormBuilderComponent implements OnInit {
         //     this.navigated = false;
             this.hero = new Hero();
         }
-        this.heroFormBuilder = this.formBuilder.group({
-            id : [this.hero.id],
-            name: [Hero.getName(this.hero), Validators.compose([Validators.maxLength(8),Validators.minLength(3), Validators.required,HeroNameValidator.startsWithNumber]) ],
-            age : [Hero.getAge(this.hero),Validators.required],
-            placeOfResidence : [Hero.getPlaceOfResidence(this.hero),Validators.pattern('[A-Za-z0-9]{5}')],
-            favoriteWeapon:[Hero.getFavoriteWeapon(this.hero),Validators.required]
+        this.initHeroFormBuilder(this.hero);
 
-
-        })
         // console.log("++++++++++++++++++",id,this.hero)
 
     }

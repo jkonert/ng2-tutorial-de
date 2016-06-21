@@ -85,10 +85,12 @@ export class AppComponent implements OnInit {
     private close(savedHero:Hero) {
         console.log("FCCC");
 
-        this.addingHero = false;
+
         if (savedHero) {
+            this.selectedHero=savedHero;
             this.getHeroes();
         }
+        this.addingHero = false;
     }
 
     /**

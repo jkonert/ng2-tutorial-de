@@ -5,16 +5,10 @@ interface ValidationResult {
 export default class HeroNameValidator {
 
     static startsWithNumber(control:Control):ValidationResult {
-
-        if (control.value !="" && !isNaN(control.value.charAt(0))
-    )
+        if (control.value !="" && !isNaN(control.value.charAt(0)))
         {
-            return { "startsWithNumber":
-            true
+            return { "startsWithNumber": true }
         }
-            ;
-        }
-
         return null;
     }
 }
