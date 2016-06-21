@@ -16,7 +16,7 @@ import HeroNameValidator from "../../validators/heroNameValidator";
     template: `
  <h2 >Hero {{hero.id ==0 ?  "creation":"edit" }} form with Formbuilder: </h2>
  
-  <form *ngIf="hero"(ngSubmit)="save()" [ngFormModel]="heroFormBuilder" >
+  <form *ngIf="hero" (ngSubmit)="save()" [ngFormModel]="heroFormBuilder" >
   
   
   <ul class="items">
@@ -163,7 +163,6 @@ initHeroFormBuilder(hero : Hero) :ControlGroup {
 }
     ngOnInit() :any {
 
-        // this.heroService.getHero(this.hero? this.hero.id : 0).then(her=> this.hero = her);
 
         if (this.hero !== null ) {
             let id : number;
@@ -172,13 +171,12 @@ initHeroFormBuilder(hero : Hero) :ControlGroup {
 
         //
         } else {
-            // id = this.heroService.getHeroes().then(res => console.log("ngOnInit--------------------- ",res))
-        //     this.navigated = false;
+
             this.hero = new Hero();
         }
         this.heroFormBuilder= this.initHeroFormBuilder(this.hero);
 
-        // console.log("++++++++++++++++++",id,this.hero)
+
 
     }
 
