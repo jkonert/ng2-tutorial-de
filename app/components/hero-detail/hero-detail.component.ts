@@ -5,8 +5,8 @@
  */
 import {Component, Input, OnInit, Output, EventEmitter}  from '@angular/core';
 
-import {Hero}              from './hero';
-import {HeroService}         from "./hero.service";
+import {Hero}              from '../../hero';
+import {HeroService}         from "../../services/hero/hero.service.ts";
 
 
 //noinspection JSAnnotator

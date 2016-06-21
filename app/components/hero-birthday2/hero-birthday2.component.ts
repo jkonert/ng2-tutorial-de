@@ -1,6 +1,6 @@
 import {Component, Input}   from '@angular/core';
-import {Hero}              from './hero';
-import {NameComponent} from './name.component';
+import {Hero}              from '../../hero';
+import {NameComponent} from '../name/name.component.ts';
 
 @Component({
     selector: 'hero-birthday2',

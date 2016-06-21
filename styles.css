@@ -77,7 +77,7 @@ nav a.router-link-active {
     border-radius: 4px;
     transition: left 0.25s;
 }
-.items .item input {
+.items .item  input{
     background-color: transparent;
     border: none;
     font-size: 16px;
