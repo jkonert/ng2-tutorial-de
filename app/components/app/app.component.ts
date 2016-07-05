@@ -27,16 +27,36 @@ import {Tab} from '../tab/tab'
                 <tabset>
                     <tab title="Hero List /">
                         <li *ngFor="let hero of heroes" class="items" [class.selected]="hero === selectedHero" (click)="onSelect(hero)" onkeyup="0">
-                            <span popup message="{{hero.name}}" class="qs">{{hero.id}}
+                            <span popup title="{{hero.name}}">{{hero.id}}
                                 <my-popover>{{ hero.age }} , {{ hero.favoriteWeapon }}</my-popover>
                             </span>
                             {{hero.name}} 
                             <button style="float: right;" class="delete-button" (click)="delete(hero, $event)">Delete</button>                       
                         </li>
                     </tab>
+                    <tab title="Show Export As">
+                        <!--Show exportAs-->
+                        <div popup title="Hello" #p1="popup">
+                            test
+                            <my-popover>World</my-popover>
+                        </div>
+                        
+                        <button (click)="p1.displayPopover()">
+                            Trigger Popover
+                        </button>
+                    </tab>
+                 
+                    <tab *ngFor="let tab of tabs" [title]="tab.title">
+                        {{ tab.content }} 
+                    </tab>
+                    
                     <tab title="Create Hero /">
-                        <button (click)="addHero()">Add New Hero</button>
-                
+                        <button (click)="addHero()">
+                            Add New Hero
+                        </button>
+                        
+                        
+                        
                        <!--<template [ngIf]="selectedHero" >-->
                          <!--<my-hero-form [hero]="selectedHero" (close)="close($event)"></my-hero-form>-->
                         <!--</template>-->
@@ -66,9 +86,7 @@ import {Tab} from '../tab/tab'
                                <power-boost-calculator [hero]="selectedHero"></power-boost-calculator>        
                         </template>
                     </tab>
-                    <tab *ngFor="let tab of tabs" [title]="tab.title">
-                        {{ tab.content }} </tab>
-                </tabset>                                         
+                </tabset>                    
                 `,
     // Angular doesn't know about the my-hero-detail tag, so we have to tell Angular to use the new directive
     directives: [HeroDetailComponent, HeroBirthday2, PowerBoostCalculator, HeroFormComponent,HeroFormBuilderComponent, Popup, PopoverComponent,Tabset, Tab],

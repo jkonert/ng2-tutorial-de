@@ -37,7 +37,7 @@
       left: 50%;
       margin-left: -7px;
       position: absolute; }
-  .qs:hover .popover {
+  .qs .popover-active {
     display: block;
     -webkit-animation: fade-in .3s linear 1, move-up .3s linear 1;
     -moz-animation: fade-in .3s linear 1, move-up .3s linear 1;
@@ -73,5 +73,7 @@
     bottom: 30px; }
   to {
     bottom: 42px; } }
+.active {
+  background-color: #b9def0; }
 
 /*# sourceMappingURL=main.css.map */

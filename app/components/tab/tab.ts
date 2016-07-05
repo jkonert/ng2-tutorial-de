@@ -4,10 +4,7 @@ import { Component, Input } from "@angular/core";
     selector: 'tab',
     inputs: ['title'],
     template: `
-        <div 
-            [class.active]="active"
-            > 
-            
+        <div> 
             <ng-content *ngIf="active"></ng-content>    
         </div>
         

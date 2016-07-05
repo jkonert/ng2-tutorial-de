@@ -2,36 +2,51 @@
  * Created by helge on 03.07.16.
  */
 
-import { Directive, ElementRef, Input, HostListener } from '@angular/core';
-import { TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, ElementRef, Input, HostListener, Renderer } from '@angular/core';
+import { QueryList, Query } from '@angular/core';
 import { PopoverComponent } from '../components/popover/popover'
 
 @Directive({
     selector: '[popup]',
-    inputs: ['message'],
+    inputs: ['title'],
+    exportAs: 'popup',
     // host: {
-    //     '(click)' : 'displayMessage()'
+    //     '(click)' : 'displayPopover()',
+    //     // '(mouseenter)' : 'displayPopover()',
+    //     // '(mouseleave)' : 'hidePopover()'
     // }
 })
 
 export class Popup {
-    message: String;
+    title: String;
+    popovers: QueryList<PopoverComponent>;
+    popover: PopoverComponent;
 
-    @HostListener('click') onClick() {
-        this.displayMessage();
+    //@Input('title') title: String;
+
+    @HostListener('mouseenter') onMouseEnter() {
+        this.displayPopover();
     }
 
-    constructor(el: ElementRef, private viewContainer: ViewContainerRef) {
-
+    @HostListener('mouseleave') onMouseLeave() {
+        this.hidePopover();
     }
 
-    ngOnInit() {
-
+    constructor(el: ElementRef, @Query(PopoverComponent) popovers:QueryList<PopoverComponent>, renderer: Renderer) {
+        this.popovers = popovers;
+        renderer.setElementClass(el.nativeElement, "qs", true);
     }
 
-    displayMessage(): void {
-        alert(this.message);
-        var popover = new PopoverComponent();
+    ngAfterContentInit() {
+        this.popover = this.popovers.toArray()[0];
+        this.popover.title = this.title;
     }
 
+    displayPopover(): void {
+        this.popover.active = true;
+    }
+
+    hidePopover(): void {
+        this.popover.active = false;
+    }
 }
