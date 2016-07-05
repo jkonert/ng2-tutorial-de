@@ -18,6 +18,11 @@ h2, h3 {
     color: #cc1169;
 }
 
+.center {
+    margin: 100px auto;
+    width: 30px;
+}
+
 .items li {
     cursor: pointer;
     position: relative;
@@ -31,3 +36,4 @@ h2, h3 {
     color: #0074D9;
 
 }
+
