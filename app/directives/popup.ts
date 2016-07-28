@@ -18,7 +18,7 @@ import { PopoverComponent } from '../components/popover/popover'
 })
 
 export class Popup {
-    title: String;
+    title: string;
     popovers: QueryList<PopoverComponent>;
     popover: PopoverComponent;
 
