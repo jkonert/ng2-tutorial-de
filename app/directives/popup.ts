@@ -1,5 +1,4 @@
 /**
- * Created by helge on 03.07.16.
  */
 
 import { Directive, ElementRef, Input, HostListener, Renderer } from '@angular/core';

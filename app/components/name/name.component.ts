@@ -1,5 +1,4 @@
 /**
- * Created by Andreas Burger on 16.05.2016.
  */
 import { Component, Input } from '@angular/core';
 

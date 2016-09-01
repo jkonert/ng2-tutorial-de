@@ -2,7 +2,6 @@
  * Application component using the helloworld-app directive
  * Hero included and new directive my-hero-detail added
  *
- * @author Johannes Konert, András Bucsi, Jules Döring
  */
 ;
 import {Component, OnInit}      from '@angular/core';
@@ -12,16 +11,16 @@ import {HeroFormComponent}    from '../hero-form/hero-form.component.ts';
 import {HeroService}            from "../../services/hero/hero.service.ts";
 import {HeroBirthday2}          from '../hero-birthday2/hero-birthday2.component.ts';
 import {PowerBoostCalculator}   from '../power-boost-calculator/power-boost-calculator.component.ts';
-import {HeroFormBuilderComponent} from '../hero-form/hero-formbuilder.components.ts'
+import {HeroFormBuilderComponent} from '../hero-form/hero-formbuilder.components.ts';
 import {Popup} from '../../directives/popup';
 import {PopoverComponent} from '../popover/popover';
-import {Tabset} from '../tabset/tabset'
-import {Tab} from '../tab/tab'
+import {Tabset} from '../tabset/tabset';
+import {Tab} from '../tab/tab';
 
 @Component({
     selector: 'my-app',
 
-    styleUrls: ['/hero-detail.component.css', '/app.component.css','/hero-form.component.css'],
+    styleUrls: ['/hero-detail.component.css', '/app.component.css', '/hero-form.component.css'],
 
     template: `<!--<h1>{{title}}</h1>-->
                 <tabset>
@@ -50,7 +49,7 @@ import {Tab} from '../tab/tab'
                         {{ tab.content }} 
                     </tab>
                     
-                    <tab title="Create Hero /">
+                    <tab title="Create Hero or see Details /">
                         <button (click)="addHero()">
                             Add New Hero
                         </button>
@@ -89,16 +88,16 @@ import {Tab} from '../tab/tab'
                 </tabset>                    
                 `,
     // Angular doesn't know about the my-hero-detail tag, so we have to tell Angular to use the new directive
-    directives: [HeroDetailComponent, HeroBirthday2, PowerBoostCalculator, HeroFormComponent,HeroFormBuilderComponent, Popup, PopoverComponent,Tabset, Tab],
+    directives: [HeroDetailComponent, HeroBirthday2, PowerBoostCalculator, HeroFormComponent, HeroFormBuilderComponent, Popup, PopoverComponent, Tabset, Tab],
     providers: [HeroService] // tell Angular to inject the HeroService
 })
 
 
 export class AppComponent implements OnInit {
-    private addingHero:boolean;
-    private title:string; // Title of the app
-    public selectedHero:Hero;   // selected hero from list
-    private heroes:Hero[]; // Array for heroes
+    private addingHero: boolean;
+    private title: string; // Title of the app
+    public selectedHero: Hero;   // selected hero from list
+    private heroes: Hero[]; // Array for heroes
     tabs: any;
 
 
@@ -108,7 +107,7 @@ export class AppComponent implements OnInit {
      *
      * The HeroService will be injected here and is available in this component and all of its children.
      */
-    constructor(private heroService:HeroService) {
+    constructor(private heroService: HeroService) {
         this.title = 'Tour of Heroes';
         this.tabs = [
             { title: 'About /', content: 'This is the About tab' },
@@ -117,12 +116,11 @@ export class AppComponent implements OnInit {
         ];
     }
 
-    private close(savedHero:Hero) {
-        console.log("FCCC");
-
-
+    private close(savedHero: Hero) {
+        console.log("saved Hero: ", savedHero);
+        
         if (savedHero) {
-            this.selectedHero=savedHero;
+            this.selectedHero = savedHero;
             this.getHeroes();
         }
         this.addingHero = false;
@@ -131,7 +129,7 @@ export class AppComponent implements OnInit {
     /**
      * Get the heroes.
      */
-    private delete(hero:Hero, event:any) {
+    private delete(hero: Hero, event: any) {
         event.stopPropagation();
         this.heroService.delete(hero);
         this.getHeroes();
@@ -147,7 +145,7 @@ export class AppComponent implements OnInit {
     }
 
 
-    getHeroes() :void {
+    getHeroes(): void {
         this.heroService.getHeroes().then(heroes => this.heroes = heroes);
     }
 
@@ -162,9 +160,9 @@ export class AppComponent implements OnInit {
      *
      * @param hero passed hero Object
      */
-    private onSelect(selectedHero :Hero) {
+    private onSelect(selectedHero: Hero) {
         this.addingHero = false;
         this.selectedHero = selectedHero;
-        console.log("selected",this.selectedHero);
+        console.log("selected", this.selectedHero);
     }
 }

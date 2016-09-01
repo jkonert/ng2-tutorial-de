@@ -1,7 +1,6 @@
 /**
  * HeroDetailComponent for the detailed view
  *
- * author András Bucsi, Jules Döring
  */
 import {Component, Input, OnInit, Output, EventEmitter}  from '@angular/core';
 

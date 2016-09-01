@@ -1,6 +1,12 @@
 {
-  "name": "angular2-quickstart",
-  "version": "1.0.0",
+  "name": "angular2-quickstart-beuth-de",
+  "version": "0.4.0",
+  "description": "A base config for kickstarting ng2 tutorial code",
+  "repository": {
+    "type" : "git",
+    "url" : "https://cgmgit.beuth-hochschule.de/ng2-wf/tour-of-heroes.git"
+  },
+  "private": false,
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
     "lite": "lite-server",

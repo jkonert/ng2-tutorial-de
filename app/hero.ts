@@ -2,8 +2,6 @@ import {Injectable} from "@angular/core";
 /**
  * Hero class with sample attributes
  *
- * @author András Bucsi, Jules Döring
- * @edited by Yeong-Cheol Jang
  */
 
 export class Hero {

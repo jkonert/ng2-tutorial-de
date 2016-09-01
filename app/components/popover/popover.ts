@@ -1,5 +1,4 @@
 /**
- * Created by helge on 04.07.16.
  */
 
 import {Component} from "@angular/core";

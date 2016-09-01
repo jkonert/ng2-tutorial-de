@@ -1,7 +1,6 @@
 /**
  * HeroForm editablity
  *
- * author Yeong-Cheol Jang
  */
 import {Component, Input, OnInit, Output, EventEmitter}  from '@angular/core';
 
