@@ -4,9 +4,9 @@
   "description": "A base config for kickstarting ng2 tutorial code",
   "repository": {
     "type" : "git",
-    "url" : "https://cgmgit.beuth-hochschule.de/ng2-wf/tour-of-heroes.git"
+    "url" : ""
   },
-  "private": false,
+  "private": true,
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
     "lite": "lite-server",
