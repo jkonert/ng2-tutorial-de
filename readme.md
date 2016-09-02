@@ -13,7 +13,7 @@ Die [Tutorial-Kapitel finden Sie im Wiki](https://github.com/jkonert/ng2-tutoria
 
 #### Fehler / FAQ
 
-F: **Wenn im Browser beim Starten Ihrer AngularJS2-Seite Errors 404 in der Konsole auftauchen und die Seite nur "Loading..." anzeigt**
-A: Das passiert sowohl bei WebStorm IDE als auch über den Kommandozeilenstart mit "npm start" gerne.
+F: **Wenn im Browser beim Starten Ihrer AngularJS2-Seite Errors 404 in der Konsole auftauchen und die Seite nur "Loading..." anzeigt**  
+A: Das passiert sowohl bei WebStorm IDE als auch über den Kommandozeilenstart mit "npm start" gerne.  
    Lösung: Ändern Sie den <base> Tag in Ihrer index.html. Dort steht auch wie.
 
