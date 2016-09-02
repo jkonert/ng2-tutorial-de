@@ -5,7 +5,7 @@ Das [englischsprachige Tour-of-Heroes Tutorial](https://angular.io/docs/ts/lates
 ist die Basis dieses Tutorials und wird vertieft.
 Da es keine deutsche Tutorial-Seite gab, entstand dieses Wiki mit passendem Code-Repository für Sie **auf Deutsch**.
 
-Die [Tutorial-Kapitel finden Sie im Wiki](./wiki).
+Die [Tutorial-Kapitel finden Sie im Wiki](https://github.com/jkonert/ng2-tutorial-de/wiki).
 
 ### Viel Erfolg mit AngularJS2!
 
