@@ -109,8 +109,8 @@ export class HeroesComponent implements OnInit {
      */
     private onSelect(hero:Hero) {
         this.selectedHero = hero;
-        //console.log(this.selectedHero);
-        //call the route /hero/:id
+        // console.log(this.selectedHero);
+        // call the route /hero/:id
         this.router.navigate(['/hero', hero.id]);
     }
 }
