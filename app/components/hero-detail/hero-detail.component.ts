@@ -8,9 +8,10 @@ import {Hero}              from '../../hero';
 import {HeroService}         from "../../services/hero/hero.service.ts";
 
 
-//noinspection JSAnnotator
+// noinspection JSAnnotator
 @Component({
     selector : 'my-hero-detail',
+    styleUrls: ['app/components/hero-detail/hero-detail.component.css'],
     template: `  <div *ngIf="hero" id="herodetails">
                     <h2>{{hero.name}} details:</h2>
                     <ul class="items">

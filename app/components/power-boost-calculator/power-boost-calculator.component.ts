@@ -6,8 +6,10 @@ import { ExponentialStrengthPipe } from '../../pipes/exponential-strength/expone
     selector: 'power-boost-calculator',
     template: `
     <h2>Power Boost Calculator</h2>
-    <div>Normal power: <input [(ngModel)]="power"></div>
-    <div>Boost factor: <input [(ngModel)]="factor"></div>
+    <ul class="items">
+        <li class="item"><span class="badge">Normal power:</span> <input [(ngModel)]="power"></li>
+        <li class="item"><span class="badge">Boost factor:</span> <input [(ngModel)]="factor"></li>
+    </ul>
     <p>
       Super Hero Power: {{power | exponentialStrength: factor}}
     </p>

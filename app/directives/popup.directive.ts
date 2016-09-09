@@ -3,7 +3,7 @@
 
 import { Directive, ElementRef, Input, HostListener, Renderer } from '@angular/core';
 import { QueryList, Query } from '@angular/core';
-import { PopoverComponent } from '../components/popover/popover'
+import { PopoverComponent } from '../components/popover/popover';
 
 @Directive({
     selector: '[popup]',
@@ -31,7 +31,9 @@ export class Popup {
         this.hidePopover();
     }
 
-    constructor(el: ElementRef, @Query(PopoverComponent) popovers:QueryList<PopoverComponent>, renderer: Renderer) {
+    constructor(el: ElementRef,
+                @Query(PopoverComponent) popovers: QueryList<PopoverComponent>,
+                renderer: Renderer) {
         this.popovers = popovers;
         renderer.setElementClass(el.nativeElement, "qs", true);
     }

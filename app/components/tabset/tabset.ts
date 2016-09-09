@@ -3,16 +3,19 @@ import { Tab } from "../tab/tab";
 
 @Component({
     selector: 'tabset',
+    styles: ['.active { background-color: #b9def0; }',
+             '.tabcontent {margin-top: 2em;}'
+            ],
     template: `
                 <!--tab header-->
-                <div class="ui top attached tabular menu">
+                <div class="ui top attached tabular menu nav">
                     <a *ngFor="let tab of tabs" [class.active]="tab.active" (click)="setActive(tab)">
                         {{ tab.title }}
-                    </a> 
+                    </a>
                 </div>
                 <hr>
                 <!--tabs-->
-                <section>
+                <section class="tabcontent">
                     <ng-content></ng-content>
                 </section>           
 ` })
