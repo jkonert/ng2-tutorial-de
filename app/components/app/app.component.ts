@@ -4,7 +4,7 @@
  *
  */
 ;
-import {Component, OnInit}      from '@angular/core';
+import {Component, OnInit, ViewEncapsulation}      from '@angular/core';
 import {Hero}                   from '../../hero';
 import {HeroDetailComponent}    from '../hero-detail/hero-detail.component.ts';
 import {HeroFormComponent}    from '../hero-form/hero-form.component.ts';
@@ -12,58 +12,38 @@ import {HeroService}            from "../../services/hero/hero.service.ts";
 import {HeroBirthday2}          from '../hero-birthday2/hero-birthday2.component.ts';
 import {PowerBoostCalculator}   from '../power-boost-calculator/power-boost-calculator.component.ts';
 import {HeroFormBuilderComponent} from '../hero-form/hero-formbuilder.components.ts';
-import {Popup} from '../../directives/popup';
+import {Popup} from '../../directives/popup.directive';
 import {PopoverComponent} from '../popover/popover';
 import {Tabset} from '../tabset/tabset';
 import {Tab} from '../tab/tab';
 
 @Component({
     selector: 'my-app',
-
-    styleUrls: ['/hero-detail.component.css', '/app.component.css', '/hero-form.component.css'],
-
-    template: `<!--<h1>{{title}}</h1>-->
+    template: `
                 <tabset>
                     <tab title="Hero List /">
                         <li *ngFor="let hero of heroes" class="items" [class.selected]="hero === selectedHero" (click)="onSelect(hero)" onkeyup="0">
                             <span popup title="{{hero.name}}">{{hero.id}}
-                                <my-popover>{{ hero.age }} , {{ hero.favoriteWeapon }}</my-popover>
+                                <my-popover>Age: {{ hero.age }}<br>Weapon: {{ hero.favoriteWeapon }}</my-popover>
                             </span>
                             {{hero.name}} 
                             <button style="float: right;" class="delete-button" (click)="delete(hero, $event)">Delete</button>                       
                         </li>
-                    </tab>
-                    <tab title="Show Export As">
-                        <!--Show exportAs-->
-                        <div popup title="Hello" #p1="popup">
-                            test
-                            <my-popover>World</my-popover>
-                        </div>
-                        
-                        <button (click)="p1.displayPopover()">
-                            Trigger Popover
-                        </button>
-                    </tab>
-                 
-                    <tab *ngFor="let tab of tabs" [title]="tab.title">
-                        {{ tab.content }} 
-                    </tab>
+                    </tab>                 
                     
-                    <tab title="Create Hero or see Details /">
+                    
+                    <tab title="{{ getEditTitle() }} /">
                         <button (click)="addHero()">
                             Add New Hero
                         </button>
                         
-                        
-                        
+                       <!-- showing form-builder usage -->
                        <!--<template [ngIf]="selectedHero" >-->
                          <!--<my-hero-form [hero]="selectedHero" (close)="close($event)"></my-hero-form>-->
                         <!--</template>-->
                         <template [ngIf]="selectedHero" >
-                         <my-hero-form-builder *ngIf="addingHero==true " [hero]="selectedHero" (close)="close($event)" ></my-hero-form-builder>
-                         <my-hero-form *ngIf="addingHero==false && selectedHero" [hero]="selectedHero" (close)="close($event)"></my-hero-form>
-        
-        
+                            <my-hero-form-builder *ngIf="addingHero==true " [hero]="selectedHero" (close)="close($event)" ></my-hero-form-builder>
+                            <my-hero-form *ngIf="addingHero==false && selectedHero" [hero]="selectedHero" (close)="close($event)"></my-hero-form>
                         </template>
                         <!-- <div *ngIf="addingHero">-->
                         <!--     <my-hero-detail [hero]="null" (close)="close($event)"></my-hero-detail>-->
@@ -81,9 +61,28 @@ import {Tab} from '../tab/tab';
                         <!--<template [ngIf]="selectedHero">-->
                             <!--<my-hero-detail [hero]="selectedHero"></my-hero-detail>-->
                         <!--</template>-->
+                        
+                        <!-- showing the usage of self-written pipes with parameters -->
                         <template [ngIf]="selectedHero">
                                <power-boost-calculator [hero]="selectedHero"></power-boost-calculator>        
                         </template>
+                    </tab>
+                    
+                    <!-- List of tabs dynamically -->
+                    <tab *ngFor="let tab of tabs" title="{{tab.title}} /">
+                        {{ tab.content }} 
+                    </tab>
+                    
+                    <!-- static tab for testing popovers -->
+                    <tab title="Popover Test">                        
+                        <br>
+                        <div popup title="Hello" #p1="popup">                            
+                            X
+                            <my-popover>Popover Content</my-popover>
+                        </div>                        
+                        <button (click)="p1.displayPopover()">
+                            Click to trigger Popover
+                        </button>
                     </tab>
                 </tabset>                    
                 `,
@@ -110,10 +109,18 @@ export class AppComponent implements OnInit {
     constructor(private heroService: HeroService) {
         this.title = 'Tour of Heroes';
         this.tabs = [
-            { title: 'About /', content: 'This is the About tab' },
-            { title: 'Blog /', content: 'This is our blog' },
-            { title: 'Contact us /', content: 'Contact us here' },
+            { title: 'About', content: 'This is the About tab' },
+            { title: 'Blog', content: 'This is our blog' },
+            { title: 'Contact us', content: 'Contact us here' },
         ];
+    }
+
+    /**
+     *  Used by Tabset to get a dynamic title for Edit-Tab
+     * @returns {string}
+     */
+    private getEditTitle() {
+        return this.selectedHero ? 'Edit ' + this.selectedHero.name : 'Add new Hero';
     }
 
     private close(savedHero: Hero) {

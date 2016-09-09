@@ -6,10 +6,10 @@ import {Injectable} from "@angular/core";
 
 export class Hero {
     public id               : number;
-    private name            : string;
-    private age             : number;
-    private placeOfResidence: string;
-    private favoriteWeapon  : string;
+    public name            : string;
+    public age             : number;
+    public placeOfResidence: string;
+    public favoriteWeapon  : string;
     private test  : string;
     private defaultHero : any=  {
         id  :0,

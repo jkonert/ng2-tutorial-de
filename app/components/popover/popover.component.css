@@ -12,13 +12,12 @@
   line-height: 30px;
   position: relative;
   text-align: center;
-  width: 30px;
-
-  .popover {
-    background-color: rgba(0,0,0,0.85);
+  width: 30px; }
+  .qs .popover {
+    background-color: rgba(0, 0, 0, 0.85);
     border-radius: 5px;
     bottom: 42px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.4);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
     color: #fff;
     display: none;
     font-size: 12px;
@@ -27,10 +26,9 @@
     padding: 7px 10px;
     position: absolute;
     width: 200px;
-    z-index: 4;
-
-    &:before {
-      border-top: 7px solid rgba(0,0,0,0.85);
+    z-index: 4; }
+    .qs .popover:before {
+      border-top: 7px solid rgba(0, 0, 0, 0.85);
       border-right: 7px solid transparent;
       border-left: 7px solid transparent;
       bottom: -7px;
@@ -38,45 +36,42 @@
       display: block;
       left: 50%;
       margin-left: -7px;
-      position: absolute;
-    }
-  }
-
-
-  .popover-active {
+      position: absolute; }
+  .qs .popover-active {
     display: block;
     -webkit-animation: fade-in .3s linear 1, move-up .3s linear 1;
     -moz-animation: fade-in .3s linear 1, move-up .3s linear 1;
-    -ms-animation: fade-in .3s linear 1, move-up .3s linear 1;
-  }
-
-}
-
+    -ms-animation: fade-in .3s linear 1, move-up .3s linear 1; }
+.qs .poptitle { font-size: 120%; color: #02bdda;}
 @-webkit-keyframes fade-in {
-  from   { opacity: 0; }
-  to { opacity: 1; }
-}
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 @-moz-keyframes fade-in {
-  from   { opacity: 0; }
-  to { opacity: 1; }
-}
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 @-ms-keyframes fade-in {
-  from   { opacity: 0; }
-  to { opacity: 1; }
-}
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 @-webkit-keyframes move-up {
-  from   { bottom: 30px; }
-  to { bottom: 42px; }
-}
+  from {
+    bottom: 30px; }
+  to {
+    bottom: 42px; } }
 @-moz-keyframes move-up {
-  from   { bottom: 30px; }
-  to { bottom: 42px; }
-}
+  from {
+    bottom: 30px; }
+  to {
+    bottom: 42px; } }
 @-ms-keyframes move-up {
-  from   { bottom: 30px; }
-  to { bottom: 42px; }
-}
+  from {
+    bottom: 30px; }
+  to {
+    bottom: 42px; } }
 
-.active {
-  background-color: #b9def0;
-}
+/*# sourceMappingURL=main.css.map */

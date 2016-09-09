@@ -10,8 +10,8 @@ import {HeroService}         from "../../services/hero/hero.service.ts";
 @Component({
     selector : 'my-hero-form',
     providers : [HeroService],
+    styleUrls: ['app/components/hero-form/hero-form.component.css'],
     template:
-
 `<h2>Hero {{hero.id == 0 ?  "creation":"edit" }} form:</h2> 
   <form >  
   <ul class="items">
@@ -84,7 +84,6 @@ import {HeroService}         from "../../services/hero/hero.service.ts";
     }
     
     `]
-
 })
 
 export class HeroFormComponent implements OnInit {
