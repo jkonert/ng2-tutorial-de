@@ -27,19 +27,14 @@
         System.config({
             transpiler: 'typescript',
             typescriptOptions: {emitDecoratorMetadata: true},
+            paths: {
+                '@angular/*': 'node_modules/@angular/*'
+            },
             map: {
-                'app'        : 'app', 
+                app        : 'app', 
                 'rxjs'       : 'node_modules/rxjs', 
                 'typescript' : 'node_modules/typescript/lib/typescript',  
 
-                '@angular/core'                     : 'node_modules/@angular/core', 
-                '@angular/http'                     : 'node_modules/@angular/http', 
-                '@angular/router'                   : 'node_modules/@angular/router', 
-                '@angular/router-deprecated'        : 'node_modules/@angular/router-deprecated', 
-                '@angular/common'                   : 'node_modules/@angular/common', 
-                '@angular/compiler'                 : 'node_modules/@angular/compiler', 
-                '@angular/platform-browser'         : 'node_modules/@angular/platform-browser', 
-                '@angular/platform-browser-dynamic' : 'node_modules/@angular/platform-browser-dynamic', 
 
                 'angular2-in-memory-web-api' : 'node_modules/angular2-in-memory-web-api'
             },
