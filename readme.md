@@ -17,7 +17,7 @@ F: **Wenn im Browser beim Starten Ihrer AngularJS2-Seite Errors 404 in der Konso
 A: Das passiert sowohl bei WebStorm IDE als auch über den Kommandozeilenstart mit "npm start" gerne.  
    Lösung: Ändern Sie den <base> Tag in Ihrer index.html damit er zum Pfad ihrer Dateien passt.
 
-F: Weitere Fehler gefunden?
+F: Weitere Fehler gefunden?  
 A: Bitte fügen Sie neue Issues in Github hinzu. Vielen Dank.
 
 

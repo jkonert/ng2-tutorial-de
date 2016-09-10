@@ -8,8 +8,8 @@ import { provide }    from '@angular/core';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { XHRBackend } from '@angular/http';
 import { InMemoryBackendService, SEED_DATA } from 'angular2-in-memory-web-api';
-import { InMemoryDataService }               from './services/in-memory-data/in-memory-data.service.ts';
-import {AppComponent} from './components/app/app.component.ts';
+import { InMemoryDataService }               from './services/in-memory-data/in-memory-data.service';
+import {AppComponent} from './components/app/app.component';
 
 bootstrap(AppComponent, [
     HTTP_PROVIDERS,

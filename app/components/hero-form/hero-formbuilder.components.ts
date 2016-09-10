@@ -6,7 +6,7 @@
 import {Component, Input, OnInit, Output, EventEmitter}  from '@angular/core';
 import {ControlGroup,FormBuilder,Validators} from "@angular/common";
 import {Hero}              from '../../hero';
-import {HeroService}         from "../../services/hero/hero.service.ts";
+import {HeroService}         from "../../services/hero/hero.service";
 import HeroNameValidator from "../../validators/heroNameValidator";
 // import {Router} from "@angular/router";
 @Component({
