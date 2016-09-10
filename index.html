@@ -19,28 +19,24 @@
     <script src="node_modules/reflect-metadata/Reflect.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
 
-    <script src="node_modules/typescript/lib/typescript.js"></script>
+    <xxscript src="node_modules/typescript/lib/typescript.js"></xxscript>
 
 
     <!-- 2. Configure SystemJS -->
     <script>
         System.config({
-            transpiler: 'typescript',
-            typescriptOptions: {emitDecoratorMetadata: true},
+            defaultJSExtensions: false,
             paths: {
                 '@angular/*': 'node_modules/@angular/*'
             },
             map: {
-                app        : 'app', 
+                 app        : 'app', 
                 'rxjs'       : 'node_modules/rxjs', 
-                'typescript' : 'node_modules/typescript/lib/typescript',  
-
-
                 'angular2-in-memory-web-api' : 'node_modules/angular2-in-memory-web-api'
             },
             packages: {
-                'app'                              : {main: 'main.ts', defaultExtension: 'ts'},
-                'rxjs'                             : {main: 'index.js'},
+                'app'                              : {main: 'main.js', defaultExtension: 'js'},
+                'rxjs'                             : {main: 'index.js',  defaultExtension: 'js'},
                 '@angular/core'                    : {main: 'index.js'},
                 '@angular/http'                    : {main: 'index.js'},
                 '@angular/router'                  : {main: 'index.js'},
@@ -49,11 +45,10 @@
                 '@angular/compiler'                : {main: 'index.js'},
                 '@angular/platform-browser'        : {main: 'index.js'},
                 '@angular/platform-browser-dynamic': {main: 'index.js'},
-
-                'angular2-in-memory-web-api'       : {main: 'index.js'}
+                'angular2-in-memory-web-api'       : {main: 'index.js', defaultExtension: 'js'}
             }
         });
-        System.import('app/main')
+        System.import('app')
                 .then(null, console.error.bind(console));
     </script>
 </head>

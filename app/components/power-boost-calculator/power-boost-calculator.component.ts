@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ExponentialStrengthPipe } from '../../pipes/exponential-strength/exponential-strength.pipe.ts';
+import { ExponentialStrengthPipe } from '../../pipes/exponential-strength/exponential-strength.pipe';
 
 @Component({
     selector: 'power-boost-calculator',

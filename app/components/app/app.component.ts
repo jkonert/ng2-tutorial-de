@@ -6,12 +6,12 @@
 ;
 import {Component, OnInit, ViewEncapsulation}      from '@angular/core';
 import {Hero}                   from '../../hero';
-import {HeroDetailComponent}    from '../hero-detail/hero-detail.component.ts';
-import {HeroFormComponent}    from '../hero-form/hero-form.component.ts';
-import {HeroService}            from "../../services/hero/hero.service.ts";
-import {HeroBirthday2}          from '../hero-birthday2/hero-birthday2.component.ts';
-import {PowerBoostCalculator}   from '../power-boost-calculator/power-boost-calculator.component.ts';
-import {HeroFormBuilderComponent} from '../hero-form/hero-formbuilder.components.ts';
+import {HeroDetailComponent}    from '../hero-detail/hero-detail.component';
+import {HeroFormComponent}    from '../hero-form/hero-form.component';
+import {HeroService}            from "../../services/hero/hero.service";
+import {HeroBirthday2}          from '../hero-birthday2/hero-birthday2.component';
+import {PowerBoostCalculator}   from '../power-boost-calculator/power-boost-calculator.component';
+import {HeroFormBuilderComponent} from '../hero-form/hero-formbuilder.components';
 import {Popup} from '../../directives/popup.directive';
 import {PopoverComponent} from '../popover/popover';
 import {Tabset} from '../tabset/tabset';
