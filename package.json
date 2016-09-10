@@ -1,26 +1,25 @@
 {
-  "name": "angular2-quickstart",
-  "version": "1.0.0",
-  "description": "QuickStart package.json from the documentation, supplemented with testing support",
+  "name": "ng2-tutorial-de",
+  "version": "0.4.0",
+  "description": "A base config for kickstarting ng2 tutorial code",
+  "private": true,
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
-    "docker-build": "docker build -t ng2-quickstart .",
-    "docker": "npm run docker-build && docker run -it --rm -p 3000:3000 -p 3001:3001 ng2-quickstart",
-    "pree2e": "npm run webdriver:update",
-    "e2e": "tsc && concurrently \"http-server -s\" \"protractor protractor.config.js\" --kill-others --success first",
     "lint": "tslint ./app/**/*.ts -t verbose",
     "lite": "lite-server",
     "postinstall": "typings install",
-    "test": "tsc && concurrently \"tsc -w\" \"karma start karma.conf.js\"",
-    "test-once": "tsc && karma start karma.conf.js --single-run",
+    "test": "echo 'unimplemented'",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "typings": "typings",
-    "webdriver:update": "webdriver-manager update"
+    "typings": "typings"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Johannes Konert and contributing students",
+  "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://cgmgit.beuth-hochschule.de/ng2-wf/ng2-tutorial-de.git"
+  },
   "dependencies": {
     "@angular/common":  "2.0.0-rc.6",
     "@angular/compiler":  "2.0.0-rc.6",
@@ -51,6 +50,7 @@
     "http-server": "^0.9.0",
     "tslint": "^3.7.4",
     "lodash": "^4.11.1",
+
     "jasmine-core": "~2.4.1",
     "karma": "^1.2.0",
     "karma-chrome-launcher": "^0.2.3",
@@ -59,6 +59,5 @@
     "karma-jasmine": "^0.3.8",
     "protractor": "^3.3.0",
     "rimraf": "^2.5.2"
-  },
-  "repository": {}
+  }
 }

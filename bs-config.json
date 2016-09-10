@@ -1,0 +1,10 @@
+{
+  "port": 3000,
+  "files": ["./**/*.js"],
+  "server": {
+    "baseDir": "./",
+    "routes": {
+      "/ng2-tutorial-de": "./"
+    }
+  }
+}
