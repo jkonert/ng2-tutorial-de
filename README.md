@@ -1,4 +1,4 @@
-# Eine Einführung in AngularJS 2  (RC-6)
+# Eine Einführung in AngularJS 2  (v 2.0)
 
 **Am Besten beherrscht man ein Framework, wenn man es benutzt.**
 Das [englischsprachige Tour-of-Heroes Tutorial](https://angular.io/docs/ts/latest/tutorial/)

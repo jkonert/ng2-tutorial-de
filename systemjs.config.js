@@ -18,10 +18,11 @@
       '@angular/http': '@angular/http/bundles/http.umd.js',
       '@angular/router': '@angular/router/bundles/router.umd.js',
       '@angular/forms': '@angular/forms/bundles/forms.umd.js',
+      '@angular/upgrade': '@angular/upgrade/bundles/upgrade.umd.js',
 
       // other libraries
       'rxjs':                       'node_modules/rxjs',
-      'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
+      'angular-in-memory-web-api': 'node_modules/angular-in-memory-web-api'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -32,7 +33,7 @@
       rxjs: {
         defaultExtension: 'js'
       },
-      'angular2-in-memory-web-api': {
+      'angular-in-memory-web-api': {
         main: './index.js',
         defaultExtension: 'js'
       }
