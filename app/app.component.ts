@@ -6,9 +6,12 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'my-app',
-    template: '<h1>My First Angular App</h1>'
+    template: '<h1>{{name}} First Angular App</h1>'
 })
 export class AppComponent {
+  name: string;
 
-
+  constructor() {
+    this.name = 'Our';
+  }
 }
