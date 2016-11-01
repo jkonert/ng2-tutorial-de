@@ -5,19 +5,34 @@
 //Importiere Components
 import { Component } from '@angular/core';
 
+//Eine Klasse die kein Component ist
+export class Hero {
+  id: number;
+  name: string;
+}
+
 //Hallo Angular, die nun folgende Klasse ist ein Angular Component.
 @Component({
 	//Übrigens hat die Klasse auch noch diese Metadaten
     selector: 'my-app',
-    //Unser erster One-Way Bind
-    template: '<h1>{{name}} First Angular App</h1>'
+    //One Way und Two Way Bindings.
+    // "`" kann man für multiline-strings benutzen.
+    template: `
+    		<h1>{{title}}</h1>
+    		<h2>{{hero.name}} Details:</h2>
+    		<div>
+    			<label>Id: </label> {{hero.id}}
+    		</div>
+    		<div>
+    			<label>Name: </label> <input [(ngModel)]="hero.name">
+    		</div>
+    `
 })
 export class AppComponent {
   //One Way Bind bezieht sich auf diese Variable
-  name: string;
-
-  //Konstruktor initalisiert die Klasse
-  constructor() {
-    this.name = 'Our';
+  title = "Tour Of Heroes"
+  hero: Hero {
+  	id: 1,
+  	name: "Windstorm",
   }
 }
