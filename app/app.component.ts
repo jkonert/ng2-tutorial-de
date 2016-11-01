@@ -15,7 +15,7 @@ export class Hero {
 @Component({
 	//Übrigens hat die Klasse auch noch diese Metadaten
     selector: 'my-app',
-    //One Way und Two Way Bindings.
+    //One Way Bindings, Two Way Bindings und Event-Binding.
     // "`" kann man für multiline-strings benutzen.
     template: `
     		<h1>{{title}}</h1>
@@ -26,6 +26,10 @@ export class Hero {
     		<div>
     			<label>Name: </label> <input [(ngModel)]="hero.name">
     		</div>
+    		<button [disabled]=hero.noArms (click)="weaponChange()">change weapon!</button>
+    		<div>
+    			<Label> Weapon: </Label> {{hero.weapon}}
+    		</div>
     `
 })
 export class AppComponent {
@@ -34,5 +38,11 @@ export class AppComponent {
   hero: Hero {
   	id: 1,
   	name: "Windstorm",
+  	noArms: false,
+  	weapon: "Klatsche"
+  }
+
+  weaponChange(): void {
+  	this.hero.weapon = "Stinkefinger"
   }
 }
