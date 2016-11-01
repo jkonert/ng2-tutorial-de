@@ -32,17 +32,27 @@ export class Hero {
     		</div>
     `
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   //One Way Bind bezieht sich auf diese Variable
-  title = "Tour Of Heroes"
-  hero: Hero {
-  	id: 1,
-  	name: "Windstorm",
-  	noArms: false,
-  	weapon: "Klatsche"
-  }
+	title: string;
+	hero: Hero;
 
-  weaponChange(): void {
-  	this.hero.weapon = "Stinkefinger"
-  }
+	//Konstruktor wird vor ngOnInit() aufgerufen
+	constructor() {
+	  this.title = "Tour Of Heroes"
+	  this.hero = {
+	  	id: 1,
+	  	name: "Windstorm",
+	  	weapon: "Klatsche",
+	  }
+	}
+
+	//Lifecycle Hook, wird nach dem ersten ngOnChanges() aufgerufen
+	ngOnInit() {
+  		this.hero.noArms = false	
+	}
+
+	weaponChange(): void {
+		this.hero.weapon = "Stinkefinger"
+	}
 }
