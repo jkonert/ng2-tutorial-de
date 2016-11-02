@@ -15,7 +15,7 @@ export class Hero {
 @Component({
 	//Übrigens hat die Klasse auch noch diese Metadaten
     selector: 'my-app',
-    //One Way Bindings, Two Way Bindings und Event-Binding.
+    //One Way Bindings, Two Way Bindings und Event-Binding mit $event variable
     // "`" kann man für multiline-strings benutzen.
     template: `
     		<h1>{{title}}</h1>
@@ -30,6 +30,10 @@ export class Hero {
     		<div>
     			<Label> Weapon: </Label> {{hero.weapon}}
     		</div>
+    		<div>
+    			<input (keyup)="onKey($event)">
+       			<p>{{values}}</p>
+       		</div>
     `
 })
 export class AppComponent implements OnInit {
@@ -43,6 +47,7 @@ export class AppComponent implements OnInit {
 	  this.hero = {
 	  	id: 1,
 	  	name: "Windstorm",
+	  	nickname: "Wind"
 	  	weapon: "Klatsche",
 	  }
 	}
@@ -54,5 +59,8 @@ export class AppComponent implements OnInit {
 
 	weaponChange(): void {
 		this.hero.weapon = "Stinkefinger"
+	}
+	onKey(event:any) {
+		this.values += event.target.value + ' | ';
 	}
 }
