@@ -74,6 +74,9 @@ const HEROES: Hero [] = [
                             <button [disabled]="selectedHero.noArms" (click)="weaponChange3()">Toogle weapon!</button>
                         </div>                      
                         <button *ngSwitchCase="4" [disabled]="selectedHero.noArms" (click)="weaponChange4()">Toogle weapon!</button>
+                        
+                        <!-- Example of a default case -->
+                        <p *ngSwitchDefault>Dieser Held existiert nicht.</p>
                     </div>  
               
                 </div>
