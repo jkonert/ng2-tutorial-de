@@ -77,6 +77,11 @@ const HEROES: Hero [] = [
                     </div>  
               
                 </div>
+                <!-- As long as no Hero has been assigned to "selecteHero" its value is ´"nul" and therefore as "falsy". In this cace the <div> below gets
+                inserted into the DOM -->
+                <div *ngIf="!selectedHero">
+                    <p>Wähle einen Helden aus.</p>
+                </div>
                 <div>
                     <p>Demo of keyUp</p>
                     <input (keyup)="onKeyUp($event)">
