@@ -13,10 +13,10 @@ import { Hero } from './hero';
  * @type {{id: number; name: string; nickname: string; weapon: string; noArms: boolean}[]}
  */
 const HEROES:Hero [] = [
-  {id: 1, name: 'Windstorm', nickname: 'hurican', weapon: 'Sword', noArms: true},
-  {id: 2, name: 'Donald Trump', nickname: 'Donald Trumpet', weapon: 'US-Air-Force', noArms: true},
-  {id: 3, name: 'Batman', nickname: 'Bruce. pssst!', weapon: 'Knife', noArms: true},
-  {id: 4, name: 'Thor', nickname: 'God', weapon: 'Hammer', noArms: true}
+  {id: 1, name: 'Windstorm', nickname: 'hurican', weapon: 'Sword', noArms: false},
+  {id: 2, name: 'Donald Trump', nickname: 'Donald Trumpet', weapon: 'US-Air-Force', noArms: false},
+  {id: 3, name: 'Batman', nickname: 'Bruce. pssst!', weapon: 'Knife', noArms: false},
+  {id: 4, name: 'Thor', nickname: 'God', weapon: 'Hammer', noArms: false}
 ];
 
 @Component({
@@ -31,6 +31,7 @@ const HEROES:Hero [] = [
                 list-style-type: none;
                 padding: 0;
                 width: 15em;
+                float: left;
               }
               .heroes li {
                 cursor: pointer;
@@ -69,6 +70,10 @@ const HEROES:Hero [] = [
                 margin-right: .8em;
                 border-radius: 4px 0 0 4px;
               }
+              
+              .red-bg {
+                background-color: red !important;
+              }
     `],
   template: `
                 <h1>{{title}}</h1>
@@ -77,6 +82,12 @@ const HEROES:Hero [] = [
                         <span class="badge">{{hero.id}}</span> {{hero.name}}                 
                   </li>
                 </ul>
+                <ul class="heroes">              
+                  <li *ngFor="let hero of heroes; let i = index" >
+                        <span class="badge red-bg">Villian</span> {{hero.weapon}}                 
+                  </li>
+                </ul>
+                <div style="clear:both"></div>
   <my-hero-detail [hero]="selectedHero" [details]="details"></my-hero-detail>
 
 
