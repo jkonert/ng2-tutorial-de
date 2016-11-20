@@ -30,7 +30,7 @@ const HEROES:Hero [] = [
                 margin: 0 0 2em 0;
                 list-style-type: none;
                 padding: 0;
-                width: 15em;
+                width: 25em;
                
               }
               .heroes li {
@@ -71,25 +71,27 @@ const HEROES:Hero [] = [
                 border-radius: 4px 0 0 4px;
               }
               
-              .red-bg {
-                background-color: red !important;
+              button {
+              float: right;
+              background-color: white;
+              margin: 0 5px;
               }
+
     `],
   template: `
                 <h1>{{title}}</h1>
                 <p>Current villian is: {{villian}}</p>
                 <h2>Choose your hero</h2>
                 <ul class="heroes">              
-                  <li *ngFor="let hero of heroes; let i = index" [class.selected]="hero === selectedHero" (click)="onSelect(hero)" >
-                        <span class="badge">{{hero.id}}</span> {{hero.name}}        
+                  <li *ngFor="let hero of heroes; let i = index" [class.selected]="hero === selectedHero"  >
+                        <span class="badge">{{hero.id}}</span> {{hero.name}}
+                        <button (click)="onFight(hero)">Fight</button>
+                        <button (click)="onSelect(hero)">Details</button>                       
                   </li>
                 </ul>
-
-                
-  <my-hero-detail [hero]="selectedHero" [details]="details" (addVillian)="villian = $event" ></my-hero-detail>
-
-
-
+               
+  <my-hero-detail [hidden]="hideDetails" [hero]="selectedHero" [details]="details" (addVillian)="villian = $event" ></my-hero-detail>
+  <hero-fight [hidden]="hideFight" [villian]="villian" [hero]="fightingHero"></hero-fight>
     `
 })
 export class AppComponent implements OnInit {
@@ -97,11 +99,19 @@ export class AppComponent implements OnInit {
   heroes:Hero [];
   values:string;
   selectedHero:Hero;
+  fightingHero:Hero;
   details: string = "Hero-Details";
   villian: string;
+  hideDetails:boolean = false;
+  hideFight:boolean = true;
   // onAddVillian(villian:string){
   //   this.selectedHero.villian = villian;
   // }
+  onFight(hero:Hero):void {
+    this.fightingHero = hero;
+    this.hideDetails = true;
+    this.hideFight = false;
+  }
 
 
   constructor() {
@@ -121,6 +131,8 @@ export class AppComponent implements OnInit {
    * @param the Hero that has been clicked last */
   onSelect(hero:Hero):void {
     this.selectedHero = hero;
+    this.hideDetails = false;
+    this.hideFight = true;
   }
 
 

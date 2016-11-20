@@ -4,5 +4,4 @@ export class Hero {
   nickname:string;
   weapon:string;
   noArms:boolean;
-  villian:string;
 }
