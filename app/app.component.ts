@@ -31,7 +31,7 @@ const HEROES:Hero [] = [
                 list-style-type: none;
                 padding: 0;
                 width: 15em;
-                float: left;
+               
               }
               .heroes li {
                 cursor: pointer;
@@ -77,18 +77,16 @@ const HEROES:Hero [] = [
     `],
   template: `
                 <h1>{{title}}</h1>
+                <p>Current villian is: {{villian}}</p>
+                <h2>Choose your hero</h2>
                 <ul class="heroes">              
-                  <li *ngFor="let hero of heroes; let i = index" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
-                        <span class="badge">{{hero.id}}</span> {{hero.name}}                 
+                  <li *ngFor="let hero of heroes; let i = index" [class.selected]="hero === selectedHero" (click)="onSelect(hero)" >
+                        <span class="badge">{{hero.id}}</span> {{hero.name}}        
                   </li>
                 </ul>
-                <ul class="heroes">              
-                  <li *ngFor="let hero of heroes; let i = index" >
-                        <span class="badge red-bg">Villian</span> {{hero.weapon}}                 
-                  </li>
-                </ul>
-                <div style="clear:both"></div>
-  <my-hero-detail [hero]="selectedHero" [details]="details"></my-hero-detail>
+
+                
+  <my-hero-detail [hero]="selectedHero" [details]="details" (addVillian)="villian = $event" ></my-hero-detail>
 
 
 
@@ -100,6 +98,10 @@ export class AppComponent implements OnInit {
   values:string;
   selectedHero:Hero;
   details: string = "Hero-Details";
+  villian: string;
+  // onAddVillian(villian:string){
+  //   this.selectedHero.villian = villian;
+  // }
 
 
   constructor() {
@@ -126,9 +128,9 @@ export class AppComponent implements OnInit {
   /** function to be toggled on keyUp in template input. Will extend this.values by current input value
    * @param event of input
    */
-  onKeyUp(event:any) {
-    this.values += event.target.value + ' | ';
-  }
+  // onKeyUp(event:any) {
+  //   this.values += event.target.value + ' | ';
+  // }
 
 
 }

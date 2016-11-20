@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, EventEmitter, Output} from '@angular/core';
 import { Hero } from './hero';
 
 @Component({
@@ -10,11 +10,15 @@ import { Hero } from './hero';
                         <label>Id: </label> {{hero.id}} 
                     </div>                
                     <div>
-                        <label> Name: </label> <input ([ngModel])="hero.name" placeholder="name">
+                        <label> Name: </label> <input [(ngModel)]="hero.name" placeholder="name"/>
+                       
                     </div>      
                     <div>
                         <label> Weapon: </label> {{hero.weapon}}
                     </div>
+                    <div>
+                        <label> Villian: </label> <input #villianInput (keyup)="onKeyup(villianInput.value)" placeholder="villian"/>
+                    </div>  
                     
                     <button (click)="hero.noArms =! hero.noArms">Toogle Hero armless</button> 
                   
@@ -32,7 +36,7 @@ import { Hero } from './hero';
                        
                         <p *ngSwitchDefault>Dieser Held existiert nicht.</p>
                     </div>  
-              <weapon-history [weapon]="weapon"></weapon-history>
+                  <weapon-history [weapon]="weapon"></weapon-history>
                 </div>
                 <div *ngIf="!hero">
                     <p>Wähle einen Helden aus.</p>
@@ -42,6 +46,11 @@ import { Hero } from './hero';
 export class HeroDetailComponent {
   @Input() hero: Hero;
   @Input('details') irgendEinName: string;
+  @Output() addVillian: EventEmitter<string> = new EventEmitter<string>();
+
+  onKeyup(value: string){
+    this.addVillian.emit(value);
+  }
 
 
   /** called by template on button click. Will switch between Sword and Axe for the hero with the id "1" */
