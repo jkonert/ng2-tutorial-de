@@ -11,8 +11,8 @@ import {FightDirective} from "./fight.directive";
 @NgModule({
   imports: [ BrowserModule, FormsModule ],
   declarations: [
-    AppComponent,
     HeroDetailComponent,
+    AppComponent,
     HeroWeaponHistory,
     HeroFightComponent,
     FightDirective
