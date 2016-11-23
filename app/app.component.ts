@@ -34,7 +34,6 @@ const HEROES:Hero [] = [
                
               }
               .heroes li {
-                cursor: pointer;
                 position: relative;
                 left: 0;
                 background-color: #EEE;
@@ -104,9 +103,7 @@ export class AppComponent implements OnInit {
   villian: string;
   hideDetails:boolean = false;
   hideFight:boolean = true;
-  // onAddVillian(villian:string){
-  //   this.selectedHero.villian = villian;
-  // }
+
   onFight(hero:Hero):void {
     this.fightingHero = hero;
     this.hideDetails = true;

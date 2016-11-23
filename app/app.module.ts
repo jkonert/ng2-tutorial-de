@@ -5,6 +5,7 @@ import { AppComponent }  from './app.component';
 import { HeroDetailComponent } from './hero-detail.component';
 import {HeroWeaponHistory} from "./hero-weapon-history.component";
 import {HeroFightComponent} from "./hero-fight.component";
+import {FightDirective} from "./fight.directive";
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {HeroFightComponent} from "./hero-fight.component";
     AppComponent,
     HeroDetailComponent,
     HeroWeaponHistory,
-    HeroFightComponent
+    HeroFightComponent,
+    FightDirective
   ],
   bootstrap: [ AppComponent ]
 })

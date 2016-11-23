@@ -1,9 +1,9 @@
-import {Component, Input, OnChanges, SimpleChange} from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 
 @Component({
   selector: 'weapon-history',
   template: `
-    <h4>Hero Weapon History:</h4>
+    <h4>Weapon History:</h4>
     <ul>
       <li *ngFor="let change of changeLog">{{change}}</li>
     </ul>
@@ -14,13 +14,16 @@ export class HeroWeaponHistory implements OnChanges{
   @Input() weapon;
   changeLog: string[]= [];
 
-  ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+  ngOnChanges(inputChanges) {
     let log: string[] = [];
-    for (let propName in changes) {
-      let changedProp = changes[propName];
-      let from = JSON.stringify(changedProp.previousValue);
-      let to =   JSON.stringify(changedProp.currentValue);
-      log.push( `${propName} changed from ${from} to ${to}`);
+    if (inputChanges.weapon) {
+      let from = inputChanges.weapon.previousValue;
+      let to = inputChanges.weapon.currentValue;
+      if (from == 'CD_INIT_VALUE'){//check if object is empty.
+        log.push( `Current Weapon is ${to}`);
+      }else{
+      log.push( `Weapon changed from ${from} to ${to}`);
+      }
     }
     this.changeLog.push(log.join(', '));
   }
