@@ -1,0 +1,14 @@
+
+<h1>{{title}}</h1>
+<p>Current villian is: {{villian}}</p>
+<h2>Choose your hero</h2>
+<ul class="heroes">
+    <li *ngFor="let hero of heroes; let i = index" [class.selected]="hero === selectedHero"  >
+        <span class="badge">{{hero.id}}</span> {{hero.name}}
+        <button (click)="onFight(hero)">Fight</button>
+        <button (click)="onSelect(hero)">Details</button>
+    </li>
+</ul>
+
+<my-hero-detail [hidden]="hideDetails" [hero]="selectedHero" [details]="details" (addVillian)="villian = $event" ></my-hero-detail>
+<hero-fight [hidden]="hideFight" [villian]="villian" [hero]="fightingHero"></hero-fight>
