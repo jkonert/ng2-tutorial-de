@@ -11,8 +11,7 @@ import {HeroService} from './hero.service';
 @Component({
     selector: 'my-app',
     styleUrls: ['app/app.component.css'],
-    templateUrl: 'app/app.component.html',
-    providers: [HeroService]
+    templateUrl: 'app/app.component.html'
 })
 export class AppComponent implements OnInit {
       title: string = 'Tour Of Heroes';

@@ -6,6 +6,7 @@ import { HeroDetailComponent } from './hero-detail.component';
 import {HeroWeaponHistory} from "./hero-weapon-history.component";
 import {HeroFightComponent} from "./hero-fight.component";
 import {FightDirective} from "./fight.directive";
+import {HeroService} from "./hero.service";
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import {FightDirective} from "./fight.directive";
     HeroFightComponent,
     FightDirective
   ],
+  providers: [HeroService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
