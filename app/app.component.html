@@ -3,10 +3,18 @@
 <p>Current villain is: {{villain}}</p>
 <h2>Choose your hero</h2>
 <ul class="heroes">
-    <li *ngFor="let hero of heroes; let i = index" [class.selected]="hero === selectedHero"  >
-        <span class="badge">{{hero.id}}</span> {{hero.name}}
-        <button (click)="onFight(hero)">Fight</button>
-        <button (click)="onSelect(hero)">Details</button>
+    <li *ngFor="let listItem of heroes; let i = index" [class.selected]="listItem.item === selectedHero"  >
+        <hero-card [hidden]="listItem.editing" [hero]="listItem.item"> </hero-card>
+        <button (click)="onFight(listItem.item)">Fight</button>
+        <button (click)="onSelect(listItem.item)">Details</button>
+        <button [hidden]="listItem.editing"
+                (click)="listItem.editing = true">edit</button>
+        <hero-editor
+                (saved)="onSaved(listItem, $event)"
+                (canceled)="onCanceled(listItem)"
+                [hidden]="!listItem.editing"
+                [hero]="listItem.item">
+        </hero-editor>
     </li>
 </ul>
 
