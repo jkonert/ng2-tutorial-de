@@ -1,5 +1,6 @@
 /**
  * Displays the Hero name for edit and lets use a RestoreService to cancel editing
+ * (Proof of example for using Service injection on Component level)
  * @author Johannes Konert
  */
 import { Component, EventEmitter, Input, Output } from '@angular/core';
@@ -7,6 +8,7 @@ import { RestoreService } from './restore.service';
 import { Hero } from './hero';
 @Component({
     selector: 'hero-editor',
+    providers: [RestoreService],
     template: `        
           <span>Name:</span>
           <input [(ngModel)]="_hero.name"/>
@@ -19,16 +21,14 @@ import { Hero } from './hero';
 export class HeroEditorComponent {
     @Output() canceled = new EventEmitter<Hero>();
     @Output() saved = new EventEmitter<Hero>();
-    _hero: Hero;
     constructor(private restoreService: RestoreService<Hero>) {}
     @Input()
     set hero (hero: Hero) {
         this.restoreService.setItem(hero);
-        this._hero = hero;
 
     }
     get hero () {
-        return this._hero;
+        return this.restoreService.getItem();
     }
     onSaved () {
         this.saved.emit(this.restoreService.getItem());
