@@ -3,32 +3,7 @@ import { Hero } from './hero';
 
 @Component({
   selector: 'my-hero-detail',
-  template: `
-                <div *ngIf="hero">                
-                    <h2>{{hero.name}} {{irgendEinName}}</h2>  
-                    <div>
-                        <label>Id: </label> {{hero.id}} 
-                    </div>                
-                    <div>
-                        <label> Name: </label> <input [(ngModel)]="hero.name" placeholder="name"/>
-                       
-                    </div>      
-                    <div>
-                        <label> Weapon: </label> {{hero.weapon}}
-                    </div>
-                    <div>
-                        <label> Villain: </label> <input #villainInput (keyup)="onKeyup(villainInput.value)" placeholder="villain"/>
-                    </div>  
-                    
-                    <button (click)="hero.noArms = !hero.noArms">Toogle Hero armless</button>                   
-                    <button [disabled]="hero.noArms" (click)="weaponChange()">Toogle weapon!</button>
-
-                  <weapon-history [weapon]="weapon"></weapon-history>
-                </div>
-                <div *ngIf="!hero">
-                    <p>Wähle einen Helden aus.</p>
-                </div>
-`
+  templateUrl: 'app/hero-detail.component.html'
 })
 export class HeroDetailComponent {
   @Input() hero: Hero;
