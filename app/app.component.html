@@ -1,7 +1,10 @@
 
 <h1>{{title}}</h1>
-<p>Current villain is: {{villain}}</p>
-<h2>Choose your hero</h2>
+<p *ngIf="villain">Current villain is: {{villain}}</p>
+
+<h2 *ngIf="!heroes">Loading Heroes....</h2>
+<h2 *ngIf="heroes">Choose your hero</h2>
+
 <ul class="heroes">
     <li *ngFor="let listItem of heroes; let i = index" [class.selected]="listItem.item === selectedHero"  >
         <hero-card [hidden]="listItem.editing" [hero]="listItem.item"> </hero-card>

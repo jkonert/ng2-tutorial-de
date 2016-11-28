@@ -11,7 +11,7 @@ import { Hero } from './hero';
     providers: [RestoreService],
     template: `        
           <span>Name:</span>
-          <input [(ngModel)]="_hero.name"/>
+          <input [(ngModel)]="hero.name"/>
           <div>
             <button (click)="onSaved()">save</button>
             <button (click)="onCanceled()">cancel</button>
