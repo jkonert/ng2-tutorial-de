@@ -5,37 +5,36 @@ import {Directive, ElementRef, HostListener, Input, Renderer} from '@angular/cor
 })
 
 export class FightDirective {
-  constructor(private el: ElementRef, private renderer: Renderer) {  }
+    @Input('fightDirective') mode: string;
 
-  @Input('fightDirective') mode: string;
-
-  @HostListener('click', ['$event']) onClick() {
-    this.highlight(this.mode);
-    //this.fightsound();
-  }
-
-  private highlight(fightmode : string) {
-    if(fightmode=='defence'){
-      this.renderer.setElementClass(this.el.nativeElement, 'defence', true);
-      this.renderer.setElementClass(this.el.nativeElement, 'fight', false);
+    @HostListener('click', ['$event']) onClick() {
+      this.highlight(this.mode);
+      // this.fightsound();  // FIXME: does not work
     }
-    else {
-      this.renderer.setElementClass(this.el.nativeElement, 'defence', false);
-      this.renderer.setElementClass(this.el.nativeElement, 'fight', true);
-    }
-  }
 
-  private fightsound(){
-    var sounds = ["http://soundbible.com/mp3/Smack-SoundBible.com-1427823671.mp3",
-                  "http://soundbible.com/mp3/Realistic_Punch-Mark_DiAngelo-1609462330.mp3",
-                  "http://soundbible.com/mp3/Slap-SoundMaster13-49669815.mp3"];
-    var   audio = new Audio(),
-          index = Math.floor(Math.random() * (sounds.length)),
-          thisSound = sounds[index];
-    audio.src = thisSound;
-    audio.load();
-    audio.play();
-  }
+    constructor(private el: ElementRef, private renderer: Renderer) {  }
+
+    private highlight(fightmode: string) {
+      if (fightmode === 'defence') {
+        this.renderer.setElementClass(this.el.nativeElement, 'defence', true);
+        this.renderer.setElementClass(this.el.nativeElement, 'fight', false);
+      } else {
+        this.renderer.setElementClass(this.el.nativeElement, 'defence', false);
+        this.renderer.setElementClass(this.el.nativeElement, 'fight', true);
+      }
+    }
+
+    private fightsound() {
+      let sounds = ["http://soundbible.com/mp3/Smack-SoundBible.com-1427823671.mp3",
+                    "http://soundbible.com/mp3/Realistic_Punch-Mark_DiAngelo-1609462330.mp3",
+                    "http://soundbible.com/mp3/Slap-SoundMaster13-49669815.mp3"];
+      let   audio = new Audio(),
+            index = Math.floor(Math.random() * (sounds.length)),
+            thisSound = sounds[index];
+      audio.src = thisSound;
+      audio.load();
+      audio.play();
+    }
 }
 
 

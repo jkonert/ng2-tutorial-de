@@ -30,7 +30,10 @@ export class AppComponent implements OnInit {
 
       /** Called by AngularJS after constructor and after injected services and child-components are set */
       ngOnInit(): void {
-          this.heroes = this.heroService.getHeroes();
+          // this.heroes = this.heroService.getHeroes();
+          this.heroService
+              .getHeroes()
+              .then(heroes => this.heroes = heroes);
       }
 
       /**  assigns an Hero to the Component's "selectedHero" property by clicking onto one of the Heros, which are listed on

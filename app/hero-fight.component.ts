@@ -18,12 +18,12 @@ import {Hero} from './hero';
                   </div>
                     <button [fightDirective] = "mode">{{hero.name}}</button>  
                     <h1>VS</h1>
-                    <button [fightDirective] = "mode">{{villian}}</button>
+                    <button [fightDirective] = "mode">{{villain}}</button>
                 </div>
 `,
 })
 export class HeroFightComponent {
-  @Input() hero:Hero;
-  @Input() villian;
+  @Input() hero: Hero;
+  @Input() villain;
 }
 

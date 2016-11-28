@@ -1,6 +1,6 @@
 
 <h1>{{title}}</h1>
-<p>Current villian is: {{villain}}</p>
+<p>Current villain is: {{villain}}</p>
 <h2>Choose your hero</h2>
 <ul class="heroes">
     <li *ngFor="let hero of heroes; let i = index" [class.selected]="hero === selectedHero"  >
@@ -10,5 +10,5 @@
     </li>
 </ul>
 
-<my-hero-detail [hidden]="hideDetails" [hero]="selectedHero" [details]="details" (addVillian)="villian = $event" ></my-hero-detail>
-<hero-fight [hidden]="hideFight" [villian]="villain" [hero]="fightingHero"></hero-fight>
+<my-hero-detail [hidden]="!selectedHero" [hero]="selectedHero" [details]="details" (addVillain)="villain = $event" ></my-hero-detail>
+<hero-fight [hidden]="hideFight" [villain]="villain" [hero]="fightingHero"></hero-fight>

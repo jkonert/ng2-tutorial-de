@@ -17,25 +17,12 @@ import { Hero } from './hero';
                         <label> Weapon: </label> {{hero.weapon}}
                     </div>
                     <div>
-                        <label> Villian: </label> <input #villianInput (keyup)="onKeyup(villianInput.value)" placeholder="villian"/>
+                        <label> Villain: </label> <input #villainInput (keyup)="onKeyup(villainInput.value)" placeholder="villain"/>
                     </div>  
                     
-                    <button (click)="hero.noArms =! hero.noArms">Toogle Hero armless</button> 
-                  
-                    <div [ngSwitch]="hero.id">
-                        <div *ngSwitchCase="1">
-                            <button [disabled]="hero.noArms" (click)="weaponChange1()">Toogle weapon!</button>
-                        </div>                       
-                        <div *ngSwitchCase="2">
-                            <button [disabled]="hero.noArms" (click)="weaponChange2()">Toogle weapon!</button>
-                        </div>                        
-                        <div *ngSwitchCase="3">
-                            <button [disabled]="hero.noArms" (click)="weaponChange3()">Toogle weapon!</button>
-                        </div>                      
-                        <button *ngSwitchCase="4" [disabled]="hero.noArms" (click)="weaponChange4()">Toogle weapon!</button>
-                       
-                        <p *ngSwitchDefault>Dieser Held existiert nicht.</p>
-                    </div>  
+                    <button (click)="hero.noArms = !hero.noArms">Toogle Hero armless</button>                   
+                    <button [disabled]="hero.noArms" (click)="weaponChange()">Toogle weapon!</button>
+
                   <weapon-history [weapon]="weapon"></weapon-history>
                 </div>
                 <div *ngIf="!hero">
@@ -46,15 +33,14 @@ import { Hero } from './hero';
 export class HeroDetailComponent {
   @Input() hero: Hero;
   @Input('details') irgendEinName: string;
-  @Output() addVillian: EventEmitter<string> = new EventEmitter<string>();
+  @Output() addVillain: EventEmitter<string> = new EventEmitter<string>();
 
-  onKeyup(value: string){
-    this.addVillian.emit(value);
+  onKeyup(value: string) {
+    this.addVillain.emit(value);
   }
 
-
   /** called by template on button click. Will switch between Sword and Axe for the hero with the id "1" */
-  weaponChange1():void {
+  weaponChange(): void {
     switch (this.hero.weapon) {
       case 'Sword':
         this.hero.weapon = 'Axe';
@@ -62,44 +48,11 @@ export class HeroDetailComponent {
       case 'Axe':
         this.hero.weapon = 'Sword';
         break;
+      default:
+        this.hero.weapon = 'Sword';
     }
   }
 
-  /** called by template on button click. Will switch between US-Air-Force and US-Navy for the hero with the id "2" */
-  weaponChange2():void {
-    switch (this.hero.weapon) {
-      case 'US-Air-Force':
-        this.hero.weapon = 'US-Navy';
-        break;
-      case 'US-Navy':
-        this.hero.weapon = 'US-Air-Force';
-        break;
-    }
-  }
-
-  /** called by template on button click. Will switch between Knife and Pistole for the hero with the id "3" */
-  weaponChange3():void {
-    switch (this.hero.weapon) {
-      case 'Knife':
-        this.hero.weapon = 'Pistole';
-        break;
-      case 'Pistole':
-        this.hero.weapon = 'Knife';
-        break;
-    }
-  }
-
-  /** called by template on button click. Will switch between Hammer and Nail for the hero with the id "4" */
-  weaponChange4():void {
-    switch (this.hero.weapon) {
-      case 'Hammer':
-        this.hero.weapon = 'Nail';
-        break;
-      case 'Nail':
-        this.hero.weapon = 'Hammer';
-        break;
-    }
-  }
   get weapon(): string {
     return this.hero.weapon;
   }
