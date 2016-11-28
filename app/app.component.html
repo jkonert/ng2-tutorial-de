@@ -9,12 +9,14 @@
         <button (click)="onSelect(listItem.item)">Details</button>
         <button [hidden]="listItem.editing"
                 (click)="listItem.editing = true">edit</button>
-        <hero-editor
-                (saved)="onSaved(listItem, $event)"
-                (canceled)="onCanceled(listItem)"
-                [hidden]="!listItem.editing"
-                [hero]="listItem.item">
-        </hero-editor>
+        <div *ngIf="listItem.editing">
+            <hero-editor
+                    (saved)="onSaved(listItem, $event)"
+                    (canceled)="onCanceled(listItem)"
+                    [hidden]="!listItem.editing"
+                    [hero]="listItem.item">
+            </hero-editor>
+        </div>
     </li>
 </ul>
 

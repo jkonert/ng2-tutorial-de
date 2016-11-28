@@ -9,6 +9,7 @@ import {FightDirective} from './fight.directive';
 import {HeroService} from './hero.service';
 import {HeroEditorComponent} from './hero-editor.component';
 import {HeroCardComponent} from './hero-card.component';
+import {RestoreService} from './restore.service';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import {HeroCardComponent} from './hero-card.component';
         HeroFightComponent,
         FightDirective
     ],
-    providers: [HeroService],
+    providers: [HeroService, RestoreService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
