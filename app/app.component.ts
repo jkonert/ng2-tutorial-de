@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
       ngOnInit(): void {
           // this.heroes = this.heroService.getHeroes();
           this.heroService
-              .getHeroes()
+              .getHeroesSlowly()
               .then(heroes => this.heroes = heroes);
       }
 
