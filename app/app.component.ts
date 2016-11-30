@@ -5,7 +5,7 @@
 import {Component, OnInit} from '@angular/core';
 /**  * Class to hold hero details. Will be soon in an own file  */
 
-import { Hero } from './hero';
+import { Hero } from './hero/hero';
 
 
 /**
@@ -89,8 +89,9 @@ const HEROES:Hero [] = [
                   </li>
                 </ul>
                
-  <my-hero-detail [hidden]="hideDetails" [hero]="selectedHero" [details]="details" (addVillian)="villian = $event" ></my-hero-detail>
+  <my-hero-detail [toChild]="parentValue" [hidden]="hideDetails" [hero]="selectedHero" [details]="details" (addVillian)="villian = $event" ></my-hero-detail>
   <hero-fight [hidden]="hideFight" [villian]="villian" [hero]="fightingHero"></hero-fight>
+  
     `
 })
 export class AppComponent implements OnInit {
@@ -103,6 +104,7 @@ export class AppComponent implements OnInit {
   villian: string;
   hideDetails:boolean = false;
   hideFight:boolean = true;
+  parentValue: string = "This is a Parent-Value";
 
   onFight(hero:Hero):void {
     this.fightingHero = hero;

@@ -1,0 +1,37 @@
+<div *ngIf="hero">
+  <h2>{{hero.name}} {{irgendEinName}}</h2>
+  <div>
+    <label>Id: </label> {{hero.id}}
+  </div>
+  <div>
+    <label> Name: </label> <input [(ngModel)]="hero.name" placeholder="name"/>
+
+  </div>
+  <div>
+    <label> Weapon: </label> {{hero.weapon}}
+  </div>
+  <div>
+    <label> Villian: </label> <input #villianInput (keyup)="onKeyup(villianInput.value)" placeholder="villian"/>
+  </div>
+
+  <button (click)="hero.noArms =! hero.noArms">Toogle Hero armless</button>
+
+  <div [ngSwitch]="hero.id">
+    <div *ngSwitchCase="1">
+      <button [disabled]="hero.noArms" (click)="weaponChange1()">Toogle weapon!</button>
+    </div>
+    <div *ngSwitchCase="2">
+      <button [disabled]="hero.noArms" (click)="weaponChange2()">Toogle weapon!</button>
+    </div>
+    <div *ngSwitchCase="3">
+      <button [disabled]="hero.noArms" (click)="weaponChange3()">Toogle weapon!</button>
+    </div>
+    <button *ngSwitchCase="4" [disabled]="hero.noArms" (click)="weaponChange4()">Toogle weapon!</button>
+
+    <p *ngSwitchDefault>Dieser Held existiert nicht.</p>
+  </div>
+  <weapon-history [parentValue]="parentValue" [weapon]="weapon"></weapon-history>
+</div>
+<div *ngIf="!hero">
+  <p>Wähle einen Helden aus.</p>
+</div>
