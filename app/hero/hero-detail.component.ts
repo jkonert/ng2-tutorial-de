@@ -8,7 +8,7 @@ import { Hero } from './hero';
 export class HeroDetailComponent {
   @Input() hero: Hero;
   @Input('details') irgendEinName: string;
-  @Input('toChild') parentValue;
+  @Input('parentValue') parentValue: string;
   @Output() addVillian: EventEmitter<string> = new EventEmitter<string>();
 
   onKeyup(value: string){

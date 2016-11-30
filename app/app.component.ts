@@ -89,7 +89,7 @@ const HEROES:Hero [] = [
                   </li>
                 </ul>
                
-  <my-hero-detail [toChild]="parentValue" [hidden]="hideDetails" [hero]="selectedHero" [details]="details" (addVillian)="villian = $event" ></my-hero-detail>
+  <my-hero-detail [parentValue]="parentValue" [hidden]="hideDetails" [hero]="selectedHero" [details]="details" (addVillian)="villian = $event" ></my-hero-detail>
   <hero-fight [hidden]="hideFight" [villian]="villian" [hero]="fightingHero"></hero-fight>
   
     `
