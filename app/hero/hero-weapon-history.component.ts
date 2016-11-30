@@ -19,9 +19,9 @@ export class HeroWeaponHistory implements OnChanges{
     if (inputChanges.weapon) {
       let from = inputChanges.weapon.previousValue;
       let to = inputChanges.weapon.currentValue;
-      if (from == 'CD_INIT_VALUE'){//check if object is empty.
+      if (from == 'CD_INIT_VALUE'){ // check if object is empty.
         log.push( `Current Weapon is ${to}`);
-      }else{
+      }else {
       log.push( `Weapon changed from ${from} to ${to}`);
       }
     }

@@ -5,8 +5,8 @@
 import {Component, OnInit} from '@angular/core';
 /**  * Class to hold hero details. Will be soon in an own file  */
 
-import { Hero } from './hero';
-import {HeroService} from './hero.service';
+import { Hero } from './hero/hero';
+import {HeroService} from './hero/hero.service';
 import {EditItem} from './edit-item';
 
 @Component({
