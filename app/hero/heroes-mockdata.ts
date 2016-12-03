@@ -3,7 +3,7 @@
  * @author Johannes Konert
  */
 
-import { Hero } from './';
+import { Hero } from './hero';
 export const HEROES: Hero[] = [
     {id: 11, name: 'Mr. Nice',  nickname: 'Nicy',   weapon: 'Smilebow', noArms: false},
     {id: 12, name: 'Narco',     nickname: 'Nana',   weapon: '',         noArms: false},
