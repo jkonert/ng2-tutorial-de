@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {HeroSearchService} from "./hero-search.service";
 import {Hero} from "./hero";
 import { Observable } from 'rxjs/Observable';
@@ -15,9 +15,15 @@ export class HeroSearchComponent implements OnInit {
     heroes: Observable<Hero[]>;
     private searchTerms = new Subject<string>();
 
+    @Output() showDetails = new EventEmitter<Hero>();
+
     constructor( private heroSearchService: HeroSearchService ){}
 
     ngOnInit():void {
+        this.initHeroes();
+    }
+
+    initHeroes() :void{
         this.heroes = this.searchTerms
             .debounceTime(300)        // wait for 300ms pause in events
             .distinctUntilChanged()   // ignore if next search term is same as previous
@@ -37,6 +43,8 @@ export class HeroSearchComponent implements OnInit {
     }
 
     gotoDetail(hero: Hero): void {
-        //onSelect(hero);
+        this.heroes = Observable.of<Hero[]>([]);
+        this.initHeroes();
+        this.showDetails.emit(hero);
     }
 }

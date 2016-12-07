@@ -1,5 +1,7 @@
 <h1>{{title}}</h1>
-<hero-search></hero-search>
+<hero-search
+    (showDetails)="onSelect($event)">
+</hero-search>
 <p *ngIf="villain">Current villain is: {{villain}}</p>
 
 <h2 *ngIf="!heroes">Loading Heroes....</h2>
