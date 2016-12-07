@@ -3,7 +3,7 @@
  * @author Johannes Konert
  */
 
-import { Hero } from './hero';
+/*import { Hero } from './hero';
 export const HEROES: Hero[] = [
     {id: 11, name: 'Mr. Nice',  nickname: 'Nicy',   weapon: 'Smilebow', noArms: false},
     {id: 12, name: 'Narco',     nickname: 'Nana',   weapon: '',         noArms: false},
@@ -15,4 +15,4 @@ export const HEROES: Hero[] = [
     {id: 18, name: 'Dr IQ',     nickname: 'Ici',    weapon: 'Riddle',   noArms: false},
     {id: 19, name: 'Magma',     nickname: 'Red',    weapon: 'Fire',     noArms: true},
     {id: 20, name: 'Tornado',   nickname: 'Squiddi', weapon: 'Wind',    noArms: true}
-];
+];*/

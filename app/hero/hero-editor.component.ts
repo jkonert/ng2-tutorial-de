@@ -38,3 +38,6 @@ export class HeroEditorComponent {
         this.canceled.emit(this.hero);
     }
 }
+
+
+

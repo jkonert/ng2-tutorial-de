@@ -6,7 +6,8 @@ import {HeroModule} from './hero/hero.module';
 import {HeroService} from './hero/hero.service';
 import { HttpModule } from "@angular/http";
 import { InMemoryWebApiModule } from "angular-in-memory-web-api";
-import { InMemoryDataService } from './hero/in-memory-data.service';
+import { InMemoryDataService } from './in-memory-data.service';
+import './rxjs-extensions';
 
 
 @NgModule({
@@ -26,3 +27,6 @@ import { InMemoryDataService } from './hero/in-memory-data.service';
 })
 export class AppModule {
 }
+
+
+

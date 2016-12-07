@@ -63,3 +63,11 @@ button {
     background-color: white;
     margin: 0 5px;
 }
+
+button.delete {
+    float:right;
+    margin-top: 2px;
+    margin-right: .8em;
+    background-color: gray !important;
+    color:white;
+}

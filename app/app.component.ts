@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
       details: string = 'Hero-Details';
       villain: string;
       hideFight: boolean = true;
+      showNewHero: boolean = false;
 
       constructor(private heroService: HeroService) {
       }
@@ -31,18 +32,40 @@ export class AppComponent implements OnInit {
       ngOnInit(): void {
           // this.heroes = this.heroService.getHeroes();
           this.heroService
-              .getHeroesSlowly()
+              .getHeroes()
               .then(heroes => {
                   this.heroes = heroes.map(item => new EditItem(item));
               });
       }
 
     onSaved (editItem: EditItem<Hero>, updatedHero: Hero) {
-        editItem.item = Object.assign(editItem.item, updatedHero);
-        editItem.editing = false;
+        Object.assign(editItem.item, updatedHero);
+        this.heroService.update(editItem.item)
+            .then(() => editItem.editing = false);
     }
+
     onCanceled (editItem: EditItem<Hero>) {
         editItem.editing = false;
+    }
+
+    add(name: string, weapon: string): void {
+        name = name.trim();
+        if (!name) { return; }
+        this.heroService.create(name, weapon)
+            .then(hero => {
+                this.heroes.push(new EditItem(hero));
+                this.selectedHero = null;
+                this.showNewHero = false;
+            });
+    }
+
+    delete(hero: Hero): void {
+        this.heroService
+            .delete(hero.id)
+            .then(() => {
+                this.heroes = this.heroes.filter(h => h.item !== hero);
+                if (this.selectedHero === hero) { this.selectedHero = null; }
+            });
     }
 
       /**  assigns an Hero to the Component's "selectedHero" property by clicking onto one of the Heros, which are listed on
@@ -51,10 +74,20 @@ export class AppComponent implements OnInit {
       onSelect(hero: Hero): void {
         this.selectedHero = hero;
         this.hideFight = true;
+          this.showNewHero = false;
       }
 
     onFight(hero: Hero): void {
         this.fightingHero = hero;
         this.hideFight = false;
+    }
+
+    onAddHero(): void {
+        this.selectedHero = null;
+        this.showNewHero = true;
+    }
+
+    cancelAddHero(): void{
+        this.showNewHero = false;
     }
 }

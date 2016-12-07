@@ -1,5 +1,5 @@
-
 <h1>{{title}}</h1>
+<hero-search></hero-search>
 <p *ngIf="villain">Current villain is: {{villain}}</p>
 
 <h2 *ngIf="!heroes">Loading Heroes....</h2>
@@ -8,6 +8,7 @@
 <ul class="heroes">
     <li *ngFor="let listItem of heroes; let i = index" [class.selected]="listItem.item === selectedHero"  >
         <hero-card [hidden]="listItem.editing" [hero]="listItem.item"> </hero-card>
+        <button class="delete" (click)="delete(listItem.item); $event.stopPropagation()">x</button>
         <button (click)="onFight(listItem.item)">Fight</button>
         <button (click)="onSelect(listItem.item)">Details</button>
         <button [hidden]="listItem.editing"
@@ -19,6 +20,15 @@
                     [hidden]="!listItem.editing"
                     [hero]="listItem.item">
             </hero-editor>
+        </div>
+    </li>
+    <li>
+        <button *ngIf="!showNewHero" (click)="onAddHero()">New Hero</button>
+        <div *ngIf="showNewHero">
+            <label>Hero name:</label> <input #heroName /><br>
+            <label>Hero Weapon:</label> <input #heroWeapon /><br>
+            <button (click)="cancelAddHero()">cancel</button>
+            <button (click)="add(heroName.value, heroWeapon.value); heroName.value=''; heroWeapon.value=''">Add</button>
         </div>
     </li>
 </ul>

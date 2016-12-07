@@ -7,6 +7,7 @@ import {HeroFightComponent} from './hero-fight.component';
 import {FightDirective} from './fight.directive';
 import {HeroEditorComponent} from './hero-editor.component';
 import {HeroCardComponent} from './hero-card.component';
+import {HeroSearchComponent} from "./hero-search.component";
 
 
 @NgModule({
@@ -18,9 +19,15 @@ import {HeroCardComponent} from './hero-card.component';
         FightDirective,
         HeroFightComponent,
         HeroEditorComponent,
-        HeroCardComponent
+        HeroCardComponent,
+        HeroSearchComponent
     ],
-    exports: [HeroDetailComponent, HeroFightComponent, HeroCardComponent, HeroEditorComponent]
-
+    exports: [
+        HeroDetailComponent,
+        HeroFightComponent,
+        HeroCardComponent,
+        HeroEditorComponent,
+        HeroSearchComponent
+    ]
 })
 export class HeroModule { }
