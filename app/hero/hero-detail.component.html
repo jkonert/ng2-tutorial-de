@@ -23,6 +23,11 @@
 
 
     <weapon-history [weapon]="weapon"></weapon-history>
+    <p>
+    <div>
+        <h3>Inside of {{hero.name}}</h3>
+        {{ hero | json }}
+    </div>
 </div>
 <div *ngIf="!hero">
     <p>Wähle einen Helden aus.</p>
