@@ -14,7 +14,7 @@
         <label> Villain: </label> <input #villainInput (keyup)="onKeyup(villainInput.value)" placeholder="villain"/>
     </div>
     <div>
-        <label> Birthday: </label> {{hero.birthday | date:'dd MMM yyyy'}}
+        <label> Birthday: </label> {{hero.birthday | date:'dd MMMM yyyy' | uppercase}}
     </div>
     <p>
     <button (click)="hero.noArms = !hero.noArms">Toogle Hero armless</button>
@@ -28,6 +28,7 @@
         <h3>Inside of {{hero.name}}</h3>
         {{ hero | json }}
     </div>
+
 </div>
 <div *ngIf="!hero">
     <p>Wähle einen Helden aus.</p>
