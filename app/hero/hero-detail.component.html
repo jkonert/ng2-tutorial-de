@@ -1,5 +1,5 @@
 <div *ngIf="hero">
-    <h2>{{hero.name | uppercase}} {{irgendEinName}}</h2>
+    <h2>{{hero.name | uppercase}} ({{hero.birthday | showAge: 18}}) {{irgendEinName}}</h2>
     <div>
         <label>Id: </label> {{hero.id}}
     </div>
