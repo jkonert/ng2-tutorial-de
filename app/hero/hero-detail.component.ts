@@ -1,35 +1,67 @@
-import {Component, Input, EventEmitter, Output} from '@angular/core';
-import { Hero } from './hero';
+import {Component, Input, EventEmitter, Output, OnInit} from "@angular/core";
+import {Hero} from "./hero";
+import {ActivatedRoute, Params} from "@angular/router";
+import {HeroService} from "./hero.service";
+import {Location} from "@angular/common";
+import {EditItem} from "../edit-item";
 
 @Component({
-  selector: 'my-hero-detail',
-  templateUrl: 'app/hero/hero-detail.component.html'
+    selector: 'my-hero-detail',
+    templateUrl: 'app/hero/hero-detail.component.html'
 })
-export class HeroDetailComponent {
-  @Input() hero: Hero;
-  @Input('details') irgendEinName: string;
-  @Output() addVillain: EventEmitter<string> = new EventEmitter<string>();
+export class HeroDetailComponent implements OnInit {
+    @Input() hero: Hero;
+    @Input('details') irgendEinName: string;
+    @Output() addVillain: EventEmitter<string> = new EventEmitter<string>();
+    villain: string;
+    fightingHero: Hero;
+    hideFight: boolean = true;
 
-  onKeyup(value: string) {
-    this.addVillain.emit(value);
-  }
-
-  /** called by template on button click. Will switch between Sword and Axe for the hero with the id "1" */
-  weaponChange(): void {
-    switch (this.hero.weapon) {
-      case 'Sword':
-        this.hero.weapon = 'Axe';
-        break;
-      case 'Axe':
-        this.hero.weapon = 'Sword';
-        break;
-      default:
-        this.hero.weapon = 'Sword';
+    constructor(private heroService: HeroService,
+                private route: ActivatedRoute,
+                private location: Location) {
     }
-  }
 
-  get weapon(): string {
-    return this.hero.weapon;
-  }
+    onKeyup(value: string) {
+        console.log(value);
+        this.addVillain.emit(value);
+    }
+
+    /** called by template on button click. Will switch between Sword and Axe for the hero with the id "1" */
+    weaponChange(): void {
+        switch (this.hero.weapon) {
+            case 'Sword':
+                this.hero.weapon = 'Axe';
+                break;
+            case 'Axe':
+                this.hero.weapon = 'Sword';
+                break;
+            default:
+                this.hero.weapon = 'Sword';
+        }
+    }
+
+    get weapon(): string {
+        return this.hero.weapon;
+    }
+
+    ngOnInit(): void {
+        this.route.params
+            .switchMap((params: Params) => this.heroService.getHero(+params['id']))
+            .subscribe(hero => this.hero = hero);
+    }
+
+    goBack(): void {
+        this.location.back();
+    }
+
+    onSaved(updatedHero: Hero) {
+        this.heroService.update(updatedHero);
+    }
+
+    onFight(hero: Hero): void {
+        this.fightingHero = hero;
+        this.hideFight = false;
+    }
 }
 

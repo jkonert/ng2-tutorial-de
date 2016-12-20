@@ -5,30 +5,30 @@
     </div>
     <div>
         <label> Name: </label> <input [(ngModel)]="hero.name" placeholder="name"/>
-
     </div>
     <div>
         <label> Weapon: </label> {{hero.weapon}}
     </div>
     <div>
-        <label> Villain: </label> <input #villainInput (keyup)="onKeyup(villainInput.value)" placeholder="villain"/>
+        <label> Villain: </label> <input #villainInput [(ngModel)]="villain" placeholder="villain"/>
     </div>
     <div>
         <label> Birthday: </label> {{hero.birthday | date:'dd MMMM yyyy' | uppercase}}
     </div>
     <p>
-    <button (click)="hero.noArms = !hero.noArms">Toogle Hero armless</button>
-    <button [disabled]="hero.noArms" (click)="weaponChange()">Toogle weapon!</button>
+        <button (click)="hero.noArms = !hero.noArms">Toogle Hero armless</button>
+        <button [disabled]="hero.noArms" (click)="weaponChange()">Toogle weapon!</button>
     <p>
-
-
-    <weapon-history [weapon]="weapon"></weapon-history>
+        <weapon-history [weapon]="weapon"></weapon-history>
     <p>
     <div>
         <h3>Inside of {{hero.name}}</h3>
         {{ hero | json }}
     </div>
-
+    <button (click)="onSaved(hero)">Save</button>
+    <button [disabled]="!villain"(click)="onFight(hero)">Fight!</button>
+    <button (click)="goBack()">Back</button>
+    <hero-fight [hidden]="hideFight" [villain]="villain" [hero]="fightingHero"></hero-fight>
 </div>
 <div *ngIf="!hero">
     <p>Wähle einen Helden aus.</p>

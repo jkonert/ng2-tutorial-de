@@ -1,6 +1,5 @@
-<h1>{{title}}</h1>
 <hero-search
-    (showDetails)="onSelect($event)">
+        (showDetails)="onSelect($event)">
 </hero-search>
 <p *ngIf="villain">Current villain is: {{villain}}</p>
 
@@ -8,13 +7,13 @@
 <h2 *ngIf="heroes">Choose your hero</h2>
 
 <ul class="heroes">
-    <li *ngFor="let listItem of heroes; let i = index" [class.selected]="listItem.item === selectedHero"  >
-        <hero-card [hidden]="listItem.editing" [hero]="listItem.item"> </hero-card>
+    <li *ngFor="let listItem of heroes; let i = index" [class.selected]="listItem.item === selectedHero">
+        <hero-card [hidden]="listItem.editing" [hero]="listItem.item"></hero-card>
         <button class="delete" (click)="delete(listItem.item); $event.stopPropagation()">x</button>
-        <button (click)="onFight(listItem.item)">Fight</button>
-        <button (click)="onSelect(listItem.item)">Details</button>
+        <button (click)="onSelect(listItem.item)">Details/Fight</button>
         <button [hidden]="listItem.editing"
-                (click)="listItem.editing = true">edit</button>
+                (click)="listItem.editing = true">quick edit
+        </button>
         <div *ngIf="listItem.editing">
             <hero-editor
                     (saved)="onSaved(listItem, $event)"
@@ -27,13 +26,18 @@
     <li>
         <button *ngIf="!showNewHero" (click)="onAddHero()">New Hero</button>
         <div *ngIf="showNewHero">
-            <label>Hero name:</label> <input #heroName /><br>
-            <label>Hero Weapon:</label> <input #heroWeapon /><br>
+            <label>Hero name:</label> <input #heroName/><br>
+            <label>Hero Weapon:</label> <input #heroWeapon/><br>
             <button (click)="cancelAddHero()">cancel</button>
             <button (click)="add(heroName.value, heroWeapon.value); heroName.value=''; heroWeapon.value=''">Add</button>
         </div>
     </li>
 </ul>
 
-<my-hero-detail [hidden]="!selectedHero" [hero]="selectedHero" [details]="details" (addVillain)="villain = $event" ></my-hero-detail>
-<hero-fight [hidden]="hideFight" [villain]="villain" [hero]="fightingHero"></hero-fight>
+<div class="heroes" *ngIf="selectedHero">
+    <h3>{{selectedHero.name}} Details:</h3>
+    <p>
+        <button (click)="gotoDetail()" class="delete">go to details</button>
+    </p>
+</div>
+
