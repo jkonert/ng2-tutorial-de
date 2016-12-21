@@ -3,7 +3,6 @@ import {Hero} from "./hero";
 import {ActivatedRoute, Params} from "@angular/router";
 import {HeroService} from "./hero.service";
 import {Location} from "@angular/common";
-import {EditItem} from "../edit-item";
 
 @Component({
     selector: 'my-hero-detail',
@@ -23,7 +22,6 @@ export class HeroDetailComponent implements OnInit {
     }
 
     onKeyup(value: string) {
-        console.log(value);
         this.addVillain.emit(value);
     }
 

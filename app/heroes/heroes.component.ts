@@ -23,7 +23,7 @@ export class HeroesComponent implements OnInit {
     selectedHero: Hero = null;
 
     constructor(private heroService: HeroService,
-                private router: Router,) {
+                private router: Router) {
     }
 
     /** Called by AngularJS after constructor and after injected services and child-components are set */
