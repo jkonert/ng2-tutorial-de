@@ -6,8 +6,10 @@ import {Location} from "@angular/common";
 
 @Component({
     selector: 'my-hero-detail',
-    templateUrl: 'app/hero/hero-detail.component.html'
+    templateUrl: 'app/hero/hero-detail.component.html',
+    styleUrls: [ 'app/hero/hero-detail.component.css' ]
 })
+
 export class HeroDetailComponent implements OnInit {
     @Input() hero: Hero;
     @Input('details') irgendEinName: string;
@@ -15,6 +17,9 @@ export class HeroDetailComponent implements OnInit {
     villain: string;
     fightingHero: Hero;
     hideFight: boolean = true;
+
+    powers = ['Really Smart', 'Super Flexible',
+    'Super Hot', 'Weather Changer'];
 
     constructor(private heroService: HeroService,
                 private route: ActivatedRoute,

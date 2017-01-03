@@ -11,6 +11,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {AppComponent} from "./app.component";
 import {HeroModule} from "./hero/hero.module";
+// import {HeroFormComponent} from "./hero/hero-form.component";
 
 @NgModule({
     imports: [
@@ -24,7 +25,8 @@ import {HeroModule} from "./hero/hero.module";
     declarations: [
         AppComponent,
         HeroesComponent,
-        DashboardComponent
+        DashboardComponent,
+        //HeroFormComponent
     ],
     providers: [HeroService],
     bootstrap: [AppComponent]

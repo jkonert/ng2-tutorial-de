@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 
 @Component({
     selector: 'my-heroes',
-    styleUrls: ['app/app.component.css'],
+    styleUrls: ['app/app.component.css', 'app/hero/hero-detail.component.css' ],
     templateUrl: 'app/heroes/heroes.component.html'
 })
 export class HeroesComponent implements OnInit {
@@ -21,6 +21,10 @@ export class HeroesComponent implements OnInit {
     details: string = 'Hero-Details';
     showNewHero: boolean = false;
     selectedHero: Hero = null;
+    model = new Hero();
+
+    powers = ['Really Smart', 'Super Flexible',
+        'Super Hot', 'Weather Changer'];
 
     constructor(private heroService: HeroService,
                 private router: Router) {
@@ -46,12 +50,12 @@ export class HeroesComponent implements OnInit {
         editItem.editing = false;
     }
 
-    add(name: string, weapon: string): void {
+    add(name: string, weapon: string, power: string): void {
         name = name.trim();
         if (!name) {
             return;
         }
-        this.heroService.create(name, weapon)
+        this.heroService.create(name, weapon, power)
             .then(hero => {
                 this.heroes.push(new EditItem(hero));
                 this.selectedHero = null;
@@ -91,4 +95,5 @@ export class HeroesComponent implements OnInit {
     gotoDetail(): void {
         this.router.navigate(['/detail', this.selectedHero.id]);
     }
+
 }

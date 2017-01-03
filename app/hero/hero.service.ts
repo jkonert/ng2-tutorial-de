@@ -45,9 +45,9 @@ export class HeroService {
             .catch(this.handleError);
     }
 
-    create(name: string, weapon: string): Promise<Hero> {
+    create(name: string, weapon: string, power: string): Promise<Hero> {
         return this.http
-            .post(this.heroUrl, JSON.stringify({name: name, weapon: weapon}), {headers: this.headers})
+            .post(this.heroUrl, JSON.stringify({name: name, weapon: weapon, power: power, birthday: new Date(1991, 9, 11)}), {headers: this.headers})
             .toPromise()
             .then(res => res.json().data)
             .catch(this.handleError);
