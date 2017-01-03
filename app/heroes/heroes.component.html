@@ -26,7 +26,7 @@
     <li>
         <button *ngIf="!showNewHero" (click)="onAddHero()">New Hero</button>
         <div *ngIf="showNewHero">
-            <form  #heroForm="ngForm">
+            <form (ngSubmit)="onSubmit(); heroForm.reset()" #heroForm="ngForm">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name"
@@ -56,8 +56,7 @@
                     </select>
                 </div>
                 <button (click)="cancelAddHero(); heroForm.reset()">cancel</button>
-                <button type="submit" (click)="add(model.name, model.weapon, model.power)"
-                        [disabled]="!heroForm.form.valid">Add</button>
+                <button type="submit" [disabled]="!heroForm.form.valid">Add</button>
             </form>
 
         </div>

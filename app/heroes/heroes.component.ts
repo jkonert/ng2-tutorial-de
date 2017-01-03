@@ -50,12 +50,9 @@ export class HeroesComponent implements OnInit {
         editItem.editing = false;
     }
 
-    add(name: string, weapon: string, power: string): void {
-        name = name.trim();
-        if (!name) {
-            return;
-        }
-        this.heroService.create(name, weapon, power)
+    onSubmit() {
+        this.model.name = this.model.name.trim();
+        this.heroService.create(this.model.name, this.model.weapon, this.model.power)
             .then(hero => {
                 this.heroes.push(new EditItem(hero));
                 this.selectedHero = null;
