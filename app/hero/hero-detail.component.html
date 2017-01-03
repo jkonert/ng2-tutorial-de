@@ -8,6 +8,7 @@
              <label for="name">Name</label>
              <input type="text" id="name"
                     required
+                    validateName
                     [(ngModel)]="hero.name" name="name"
                     #name="ngModel">
              <div [hidden]="name.valid || name.pristine"

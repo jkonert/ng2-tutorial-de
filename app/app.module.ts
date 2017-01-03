@@ -11,6 +11,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {AppComponent} from "./app.component";
 import {HeroModule} from "./hero/hero.module";
+import {NameValidator} from "./hero/name-validator";
 // import {HeroFormComponent} from "./hero/hero-form.component";
 
 @NgModule({
@@ -26,6 +27,7 @@ import {HeroModule} from "./hero/hero.module";
         AppComponent,
         HeroesComponent,
         DashboardComponent,
+        NameValidator
         //HeroFormComponent
     ],
     providers: [HeroService],

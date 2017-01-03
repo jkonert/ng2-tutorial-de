@@ -43,7 +43,7 @@
                     <label for="Weapon">Weapon</label>
                     <input type="text" id="weapon"
                            [(ngModel)]="model.weapon"
-                            name="weapon" #weapon="ngModel">
+                            name="weapon">
                 </div>
 
 
@@ -51,13 +51,12 @@
                     <label for="power">Hero Power</label>
                     <select id="power"
                             required
-                            [(ngModel)]="model.power" name="power"
-                            #power="ngModel">
+                            [(ngModel)]="model.power" name="power">
                         <option *ngFor="let pow of powers" [value]="pow" >{{pow}}</option>
                     </select>
                 </div>
-                <button (click)="cancelAddHero()">cancel</button>
-                <button type="submit" (click)="add(model.name, model.weapon, model.power); model.name=''; model.weapon=''; model.power=''"
+                <button (click)="cancelAddHero(); heroForm.reset()">cancel</button>
+                <button type="submit" (click)="add(model.name, model.weapon, model.power)"
                         [disabled]="!heroForm.form.valid">Add</button>
             </form>
 

@@ -3,6 +3,7 @@ import {Hero} from "./hero";
 import {ActivatedRoute, Params} from "@angular/router";
 import {HeroService} from "./hero.service";
 import {Location} from "@angular/common";
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
     selector: 'my-hero-detail',
@@ -20,6 +21,8 @@ export class HeroDetailComponent implements OnInit {
 
     powers = ['Really Smart', 'Super Flexible',
     'Super Hot', 'Weather Changer'];
+
+    heroForm: FormGroup;
 
     constructor(private heroService: HeroService,
                 private route: ActivatedRoute,
@@ -52,6 +55,12 @@ export class HeroDetailComponent implements OnInit {
         this.route.params
             .switchMap((params: Params) => this.heroService.getHero(+params['id']))
             .subscribe(hero => this.hero = hero);
+        this.heroForm = new FormGroup({
+            name: new FormControl('', [
+                Validators.required,
+                Validators.minLength(2)
+            ])
+        });
     }
 
     goBack(): void {
