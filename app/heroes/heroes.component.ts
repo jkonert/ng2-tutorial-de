@@ -14,6 +14,7 @@ import {Router} from "@angular/router";
     styleUrls: ['app/app.component.css', 'app/hero/hero-detail.component.css' ],
     templateUrl: 'app/heroes/heroes.component.html'
 })
+
 export class HeroesComponent implements OnInit {
     title: string = 'Tour Of Heroes';
     heroes: Array<EditItem<Hero>>;
@@ -21,6 +22,7 @@ export class HeroesComponent implements OnInit {
     details: string = 'Hero-Details';
     showNewHero: boolean = false;
     selectedHero: Hero = null;
+
     model = new Hero();
 
     powers = ['Really Smart', 'Super Flexible',

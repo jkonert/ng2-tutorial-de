@@ -1,6 +1,6 @@
 <div *ngIf="hero">
     <h2>{{hero.name | uppercase}} ({{hero.birthday | showAge: 18}}) {{irgendEinName}}</h2>
-    <form #heroForm="ngForm">
+    <form (ngSubmit)="onSaved(hero)" #heroForm="ngForm">
          <div>
              <label>Id: </label> {{hero.id}}
          </div>
@@ -44,7 +44,7 @@
              <label for="villain"> Villain: </label> <input type="text" name="villain" id="villain" #villainInput
                                                             [(ngModel)]="villain" placeholder="villain"/>
          </div>
-         <button type="submit" (click)="onSaved(hero)" class="btn btn-default" [disabled]="!heroForm.form.valid">Save
+         <button type="submit" class="btn btn-default" [disabled]="!heroForm.form.valid">Save
          </button>
          <button [disabled]="!villain" class="btn btn-default" (click)="onFight(hero)">Fight!</button>
          <button class="btn btn-default" (click)="goBack()">Back</button>
