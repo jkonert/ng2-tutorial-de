@@ -12,7 +12,7 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {AppComponent} from "./app.component";
 import {HeroModule} from "./hero/hero.module";
 import {NameValidator} from "./hero/name-validator";
-import {Popup} from './popup/popup';
+import {Popup} from './popup/popup.component';
 
 
 @NgModule({

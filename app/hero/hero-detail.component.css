@@ -13,3 +13,8 @@
     background-color: #a94442;
     color: white;
 }
+
+textarea {
+    width: 60%;
+    height: 12em;
+}

@@ -1,5 +1,8 @@
 /**
- * A directive to show popups on host elements using the title as input
+ * A directive to show popups on host elements using message attribute as input
+ * @author: Johannes Konert
+ *
+ * based on ng-book rev. 43, pages 439ff
  */
 
 import {Component, ElementRef, Input, HostListener, ViewEncapsulation} from '@angular/core';
@@ -13,7 +16,7 @@ import {Component, ElementRef, Input, HostListener, ViewEncapsulation} from '@an
         '(xxmouseenter)' : 'displayPopover()',
         '(xxmouseleave)' : 'hidePopover()'
     },
-    styleUrls: ['app/popup/popup.css'],
+    styleUrls: ['app/popup/popup.component.css'],
     encapsulation: ViewEncapsulation.None,
     template: `         
         <aside class="popover" [class.popover-active]="active">

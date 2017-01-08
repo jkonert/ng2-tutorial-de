@@ -10,7 +10,7 @@ const routes: Routes = [
     {path: 'dashboard', component: DashboardComponent},
     {path: 'detail/:id', component: HeroDetailComponent},
     {path: 'heroes', component: HeroesComponent},
-    //{path: 'hero-form', component: HeroFormComponent},
+    // {path: 'hero-form', component: HeroFormComponent},
     {path: '**', redirectTo: '/dashboard'}
 ];
 
