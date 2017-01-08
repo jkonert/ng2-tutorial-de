@@ -8,7 +8,7 @@ import {FightDirective} from './fight.directive';
 import {HeroEditorComponent} from './hero-editor.component';
 import {HeroCardComponent} from './hero-card.component';
 import {HeroSearchComponent} from "./hero-search.component";
-import { HeroAgePipe } from '../utils/hero-age.pipe'
+import { HeroAgePipe } from './hero-age.pipe'
 
 @NgModule({
     imports: [CommonModule, FormsModule],
