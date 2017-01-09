@@ -39,9 +39,7 @@ export class TabSet implements AfterContentInit {
     ngAfterContentInit() {
         this.setActive(this.tabs.first);
     }
-
     setActive(tab: Tab) {
-        // set clicked tab as active
         this.tabs.toArray().forEach((t) => t.active = false);
         tab.active = true;
     }

@@ -29,6 +29,10 @@ export class HeroDetailComponent implements OnInit {
                 private location: Location) {
     }
 
+    /**
+     *  Triggered on input changes for villain. Emits addVillain event
+     * @param value {String} of input
+     */
     onKeyup(value: string) {
         this.addVillain.emit(value);
     }

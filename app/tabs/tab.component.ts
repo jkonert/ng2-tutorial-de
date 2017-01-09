@@ -21,7 +21,4 @@ import { Component, Input } from "@angular/core";
 export class Tab {
     @Input() title: string;
     active: boolean = false;
-    name: string;
-
-    constructor() {}
 }

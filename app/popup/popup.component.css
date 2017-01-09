@@ -7,14 +7,16 @@
 .popup-host .popover {
     background-color: rgba(0, 0, 0, 0.85);
     border-radius: 5px;
-    bottom: 42px;
+    bottom: 5.5em;
+    right: 5%;
+    left: 5%;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
     color: #fff;
     display: none;
     font-size: 12px;
     font-family: 'Helvetica',sans-serif;
     padding: 7px 10px;
-    position: relative;
+    position: absolute;
     width: auto;
     z-index: 2;
 }
@@ -54,17 +56,17 @@
     opacity: 1; } }
 @-webkit-keyframes move-up {
   from {
-    bottom: 30px; }
+    bottom: 5em; }
   to {
-    bottom: 42px; } }
+    bottom: 5.5em; } }
 @-moz-keyframes move-up {
   from {
-    bottom: 30px; }
+    bottom: 5em; }
   to {
-    bottom: 42px; } }
+    bottom: 5.5em; } }
 @-ms-keyframes move-up {
   from {
-    bottom: 30px; }
+    bottom: 5em; }
   to {
-    bottom: 42px; } }
+    bottom: 5.5em; } }
 

@@ -1,5 +1,5 @@
 /**
- * a sample component using the my-app directive
+ * a sample component using the my-heroes directive
  * @author Johannes Konert
  */
 import {Component, OnInit} from "@angular/core";
@@ -7,7 +7,6 @@ import {Hero} from "../hero/hero";
 import {HeroService} from "../hero/hero.service";
 import {EditItem} from "../edit-item";
 import {Router} from "@angular/router";
-/**  * Class to hold hero details. Will be soon in an own file  */
 
 @Component({
     selector: 'my-heroes',
@@ -18,7 +17,6 @@ import {Router} from "@angular/router";
 export class HeroesComponent implements OnInit {
     title: string = 'Tour Of Heroes';
     heroes: Array<EditItem<Hero>>;
-    values: string = '';
     details: string = 'Hero-Details';
     showNewHero: boolean = false;
     selectedHero: Hero = null;
@@ -34,7 +32,6 @@ export class HeroesComponent implements OnInit {
 
     /** Called by AngularJS after constructor and after injected services and child-components are set */
     ngOnInit(): void {
-        // this.heroes = this.heroService.getHeroes();
         this.heroService
             .getHeroes()
             .then(heroes => {

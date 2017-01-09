@@ -1,5 +1,5 @@
 <div *ngIf="!hero">
-    <p>Wähle einen Helden aus.</p>
+    <p>Select a hero</p>
 </div>
 <div *ngIf="hero">
     <h2>{{hero.name | uppercase}} ({{hero.birthday | showAge: 18}}) {{irgendEinName}}</h2>
@@ -53,17 +53,17 @@
                 <weapon-history [weapon]="weapon"></weapon-history>
             <p>
         </tab>
-
-        <tab title="Villain">
+        <!--   *********  next tab ************* -->
+        <tab title="Villain/Fight">
             <h3>Set a villain to fight with:</h3>
-            <div class="form-group">
-                <label for="villain"> Villain: </label> <input type="text" name="villain" id="villain" #villainInput
+            <div>
+                <label for="villain"> Villain: </label> <input type="text" name="villain" id="villain"
                                                                [(ngModel)]="villain" placeholder="villain"/>
             </div>
             <button [disabled]="!villain" class="btn btn-default" (click)="onFight(hero)">Fight!</button>
             <hero-fight [hidden]="hideFight" [villain]="villain" [hero]="fightingHero"></hero-fight>
         </tab>
-
+        <!--   *********  next tab ************* -->
         <tab title="JSON of {{hero.name}}">
             <h3>JSON inside of {{hero.name}}</h3>
             <textarea disabled>{{ hero | json }}
