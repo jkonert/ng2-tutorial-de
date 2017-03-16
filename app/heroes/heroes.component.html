@@ -1,0 +1,70 @@
+<hero-search
+        (showDetails)="onSelect($event)">
+</hero-search>
+<p *ngIf="villain">Current villain is: {{villain}}</p>
+
+<h2 *ngIf="!heroes">Loading Heroes....</h2>
+<h2 *ngIf="heroes">Choose your hero</h2>
+
+<ul class="heroes">
+    <li *ngFor="let listItem of heroes; let i = index" [class.selected]="listItem.item === selectedHero">
+        <hero-card [hidden]="listItem.editing" [hero]="listItem.item"></hero-card>
+        <button class="delete" (click)="delete(listItem.item); $event.stopPropagation()">x</button>
+        <button (click)="onSelect(listItem.item)">Details/Fight</button>
+        <button [hidden]="listItem.editing"
+                (click)="listItem.editing = true">quick edit
+        </button>
+        <div *ngIf="listItem.editing">
+            <hero-editor
+                    (saved)="onSaved(listItem, $event)"
+                    (canceled)="onCanceled(listItem)"
+                    [hidden]="!listItem.editing"
+                    [hero]="listItem.item">
+            </hero-editor>
+        </div>
+    </li>
+    <li>
+        <button *ngIf="!showNewHero" (click)="onAddHero()">New Hero</button>
+        <div *ngIf="showNewHero">
+            <form (ngSubmit)="onSubmit(); heroForm.reset()" #heroForm="ngForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name"
+                           required
+                           [(ngModel)]="model.name"
+                           name="name"
+                           #name="ngModel">
+                    <div [hidden]="name.valid || name.pristine"
+                         class="alert alert-danger">
+                        Name is required
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Weapon">Weapon</label>
+                    <input type="text" id="weapon"
+                           [(ngModel)]="model.weapon"
+                            name="weapon">
+                </div>
+                <div class="form-group">
+                    <label for="power">Hero Power</label>
+                    <select id="power"
+                            required
+                            [(ngModel)]="model.power" name="power">
+                        <option *ngFor="let pow of powers" [value]="pow" >{{pow}}</option>
+                    </select>
+                </div>
+                <button (click)="cancelAddHero(); heroForm.reset()">cancel</button>
+                <button type="submit" [disabled]="!heroForm.form.valid">Add</button>
+            </form>
+
+        </div>
+    </li>
+</ul>
+
+<div class="heroes" *ngIf="selectedHero">
+    <h3>{{selectedHero.name}} Details:</h3>
+    <p>
+        <button (click)="gotoDetail()" class="delete">go to details</button>
+    </p>
+</div>
+

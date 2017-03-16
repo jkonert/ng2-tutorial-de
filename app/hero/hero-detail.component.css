@@ -1,0 +1,20 @@
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+
+}
+
+.ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+
+}
+
+.alert, .alert-danger{
+    width: 200px;
+    background-color: #a94442;
+    color: white;
+}
+
+textarea {
+    width: 60%;
+    height: 12em;
+}
