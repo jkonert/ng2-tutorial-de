@@ -1,4 +1,4 @@
-# Eine Einführung in AngularJS 2  (v 2.1)
+# Eine Einführung in AngularJS 2  (v 2.1.1)
 
 **Am Besten beherrscht man ein Framework, wenn man es benutzt.**
 Das [englischsprachige Tour-of-Heroes Tutorial](https://angular.io/docs/ts/latest/tutorial/)
